@@ -18,7 +18,7 @@ const Login = () => {
     const handleLogin = (data) => {
         console.log('from data', data);
 
-        const regExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?`~])[A-Za-z\d!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?`~]{8,}$/;
+        const regExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?`~])[A-Za-z\d!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?`~]{6,}$/;
         if (!regExp.test(data.password)) {
             toast.error(
                 "Password must be at lest 8 character long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
@@ -81,7 +81,7 @@ const Login = () => {
                     {/* password field */}
                     <label className="label text-gray-800">Password</label>
                     <div className='relative lg:pr-4'>
-                        <input type={show ? "text" : "password"} {...register('password', { required: true, minLength:8 })} className="input" placeholder="Password" />
+                        <input type={show ? "text" : "password"} {...register('password', { required: true, minLength:6 })} className="input" placeholder="Password" />
 
                         <span onClick={() => setShow(!show)} className='absolute right-[25px] top-2 cursor-pointer z-50'>{show ? <IoEye size={22} /> : <IoEyeOff size={22} />}</span>
                     </div>

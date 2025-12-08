@@ -1,17 +1,20 @@
 import React from 'react';
 import Logo from '../../../Components/Logo/Logo';
 import useAuth from '../../../Hooks/useAuth';
-import { Link } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 
 const Navbar = () => {
     const { user, signOutUser } = useAuth();
+    const navigate = useNavigate();
 
-    const handleLogOut = () =>{
+    const handleLogOut = () => {
         signOutUser()
-        .then()
-        .catch(error =>{
-            console.log(error);
-        })
+            .then(() => {
+                navigate('/');
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     return (
@@ -24,10 +27,16 @@ const Navbar = () => {
                     <ul
                         tabIndex="-1"
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li><a>Home</a></li>
-                        <li><a>All-Loans</a></li>
-                        <li><a>About Us</a></li>
-                        <li><a>Contact</a></li>
+                        <li><NavLink>Home</NavLink></li>
+                        <li><NavLink to='/loan-application'>Loan-Request</NavLink></li>
+                        <li><NavLink>All-Loans</NavLink></li>
+                        <li><NavLink>About Us</NavLink></li>
+                        <li><NavLink>Contact</NavLink></li>
+                        {
+                            user && <>
+                                <li><NavLink to="/dashboard/my-application">My Applications</NavLink></li>
+                            </>
+                        }
                     </ul>
                 </div>
                 <a className="btn btn-ghost lg:bg-none hidden lg:block">
@@ -37,19 +46,25 @@ const Navbar = () => {
             <div className="navbar-end">
                 <div className='hidden lg:flex'>
                     <ul className="menu menu-horizontal px-1">
-                        <li><a>Home</a></li>
-                        <li><a>All-Loans</a></li>
-                        <li><a>About Us</a></li>
-                        <li><a>Contact</a></li>
+                        <li><NavLink>Home</NavLink></li>
+                        <li><NavLink to='/loan-application'>Loan-Request</NavLink></li>
+                        <li><NavLink>All-Loans</NavLink></li>
+                        <li><NavLink>About Us</NavLink></li>
+                        <li><NavLink>Contact</NavLink></li>
+                        {
+                            user && <>
+                                <li><NavLink to="/dashboard/my-application">My Applications</NavLink></li>
+                            </>
+                        }
                     </ul>
                 </div>
                 <div>
                     {
-                        user? <a onClick={handleLogOut} className="btn">Log Out</a> : 
-                        <Link to="/login" className="btn">Login</Link>
+                        user ? <a onClick={handleLogOut} className="btn">Log Out</a> :
+                            <Link to="/login" className="btn">Login</Link>
                     }
                     <Link to="/manager" className='btn btn-primary text-black mx-4'>Manager</Link>
-                    
+
                 </div>
 
             </div>

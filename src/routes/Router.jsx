@@ -6,6 +6,9 @@ import Login from "../Pages/Auth/Login/Login";
 import Register from "../Pages/Auth/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import Manager from "../Pages/Manager/Manager";
+import LoanApplication from "../Pages/LoanApplication/LoanApplication";
+import DashboardLayout from "../Layout/DashboardLayout";
+import MyApplication from "../Pages/Dashboard/MyApplication/MyApplication";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +18,10 @@ export const router = createBrowserRouter([
         {
             index: true,
             Component: Home
+        },
+        {
+          path: 'loan-application',
+          element: <PrivateRoute><LoanApplication></LoanApplication></PrivateRoute>
         },
         {
           path: 'manager',
@@ -33,6 +40,16 @@ export const router = createBrowserRouter([
       {
         path: 'register',
         Component: Register
+      }
+    ]
+  },
+  {
+    path: 'dashboard',
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    children: [
+      {
+        path: 'my-application',
+        Component: MyApplication
       }
     ]
   }

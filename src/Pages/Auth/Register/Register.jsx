@@ -17,7 +17,7 @@ const Register = () => {
 
     const handleRegistration = (data) => {
 
-        const regExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?`~])[A-Za-z\d!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?`~]{8,}$/;
+        const regExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?`~])[A-Za-z\d!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?`~]{6,}$/;
         if (!regExp.test(data.password)) {
             toast.error(
                 "Password must be at lest 8 character long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
@@ -39,6 +39,7 @@ const Register = () => {
 
                 axios.post(image_API_URL, formData)
                     .then(res => {
+                        console.log(res.data);
                         console.log('after image upload', res.data.data.url);
 
                         // update user profile
@@ -86,6 +87,13 @@ const Register = () => {
                         <label className="label text-gray-800">Photo</label>
                         <input type="file" {...register('photo', { required: true })} className="file-input" placeholder="Your Photo" />
 
+                        <label className="label text-gray-800">Select Role</label>
+                        <select {...register('role')} className="select" defaultValue="Select Role">
+                            <option disabled={true}>Select Role</option>
+                            <option>Borrower</option>
+                            <option>Manager</option>
+                        </select>
+
                         {/* email field */}
                         <label className="label text-gray-800">Email</label>
                         <input type="email" name='email' {...register('email', { required: true })} className="input" placeholder="Email" />
@@ -97,7 +105,7 @@ const Register = () => {
                         {/* password field */}
                         <label className="label text-gray-800">Password</label>
                         <div className='relative lg:pr-4'>
-                            <input type={show ? "text" : "password"} {...register('password', { required: true, minLength: 8 })} className="input" placeholder="Password" />
+                            <input type={show ? "text" : "password"} {...register('password', { required: true, minLength: 6 })} className="input" placeholder="Password" />
 
                             <span onClick={() => setShow(!show)} className='absolute right-[25px] top-2 cursor-pointer z-50'>{show ? <IoEye size={22} /> : <IoEyeOff size={22} />}</span>
                         </div>
