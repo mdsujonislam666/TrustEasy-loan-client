@@ -17,6 +17,18 @@ const Payment = () => {
     
     })
 
+    const handlePayment = async() =>{
+        const paymentInfo = {
+            cost: application.cost,
+            applicationId: application._id,
+            userEmail: application.email,
+            loanTitle: application.loanTitle
+        }
+
+        const res = await axiosSecure.post('/create-checkout-session', paymentInfo)
+        console.log(res.data);
+    }
+
     if(isLoading){
         return <span className="loading loading-bars loading-xl"></span>
     }
@@ -24,8 +36,8 @@ const Payment = () => {
 
     return (
         <div>
-            <h2>Please Pay:{application.loanTitle}</h2>
-            <button className='btn btn-primary text-black'>Pay</button>
+            <h2>Please Pay ${application.cost} for :{application.loanTitle}</h2>
+            <button onClick={handlePayment} className='btn btn-primary text-black'>Pay</button>
         </div>
     );
 };
