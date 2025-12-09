@@ -12,6 +12,9 @@ const LoanApplication = () => {
 
     const handleLoanApplication = data => {
         console.log(data);
+        data.cost = 100;
+        data.Status = "Pending";
+        data.FeeStatus= "unpaid";
 
         Swal.fire({
             title: "Can you wnat to apply for loan?",
@@ -48,7 +51,7 @@ const LoanApplication = () => {
                             <div>
                                 <label className="label">Email</label>
                                 <input type="email" {...register('email', { required: true })}
-                                defaultValue={user?.email} className="input" placeholder="Email" />
+                                defaultValue={user?.email} className="input" placeholder="Email" readOnly />
 
                                 <label className="label">Loan Title</label>
                                 <input type="text" {...register('loanTitle')} className="input" placeholder="Loan Title" />
@@ -80,6 +83,13 @@ const LoanApplication = () => {
 
                                 <label className="label">Address</label>
                                 <input type="text" {...register('address')} className="input" placeholder="Address" />
+
+                                {/* <label className="label">Status</label>
+                                <input type="text" {...register('status')} className="input" placeholder="Status" defaultValue={"Pending"} readOnly />
+
+                                <label className="label">Application Fee</label>
+                                <input type="text" {...register('applicationFee')} className="input"  defaultValue={"unpaid"} readOnly /> */}
+
 
                                 {/* receiver Instruction */}
                                 <label className="label mt-4">Extra Notes</label>
