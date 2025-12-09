@@ -5,6 +5,8 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { FaMagnifyingGlass, FaTrashCan } from "react-icons/fa6";
 import { MdPayments } from "react-icons/md";
 import Swal from 'sweetalert2';
+import { BiCheck } from "react-icons/bi";
+import { Link } from 'react-router';
 
 
 const MyApplication = () => {
@@ -14,7 +16,7 @@ const MyApplication = () => {
     const { data: applications = [], refetch } = useQuery({
         queryKey: ['myApplication', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/loanApplications?.email=${user.email}`)
+            const res = await axiosSecure.get(`/loanApplications?email=${user.email}`)
             return res.data;
         }
     })
@@ -64,6 +66,8 @@ const MyApplication = () => {
                             <th>Loan Info</th>
                             <th>Amount</th>
                             <th>Status</th>
+                            <th>Application Fee</th>
+                            <th>Fee Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -76,16 +80,28 @@ const MyApplication = () => {
                                     <td>{application.loanTitle}</td>
                                     <td>{application.loanAmount}</td>
                                     <td>{application.Status}</td>
+                                    <td>{application.cost}</td>
+                                    <td>{application.FeeStatus}</td>
                                     <td className='flex gap-2'>
                                         <button className='btn btn-square hover:bg-amber-300'>
                                             <FaMagnifyingGlass />
                                         </button>
-                                        <button onClick={() => handleApplicationDelete(application._id)} className='btn btn-square hover:bg-amber-300'>
-                                            <FaTrashCan />
-                                        </button>
-                                        <button className='btn btn-square hover:bg-amber-300'>
-                                            <MdPayments />
-                                        </button>
+                                        {
+                                            application.Status === 'Pending' ? <button onClick={() => handleApplicationDelete(application._id)} className='btn btn-square hover:bg-amber-300'>
+                                                <FaTrashCan />
+                                            </button> : ""
+                                        }
+                                        {
+                                            application.FeeStatus === 'unpaid' ?
+                                                <Link to={`/dashboard/payment/${application._id}`}>
+                                                    <button className='btn btn-square hover:bg-amber-300'>
+                                                        <MdPayments />
+                                                    </button>
+                                                </Link>
+                                                : <button className='btn btn-square hover:bg-amber-300'>
+                                                    <BiCheck />
+                                                </button>
+                                        }
                                     </td>
                                 </tr>
                             )
@@ -94,7 +110,7 @@ const MyApplication = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     );
 };
 

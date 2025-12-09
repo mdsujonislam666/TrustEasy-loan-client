@@ -9,6 +9,7 @@ import Manager from "../Pages/Manager/Manager";
 import LoanApplication from "../Pages/LoanApplication/LoanApplication";
 import DashboardLayout from "../Layout/DashboardLayout";
 import MyApplication from "../Pages/Dashboard/MyApplication/MyApplication";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: 'my-application',
         Component: MyApplication
+      }, 
+      {
+        path: 'payment/:applicationId',
+        element: <Payment/>
       }
     ]
   }

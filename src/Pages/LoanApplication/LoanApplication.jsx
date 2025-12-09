@@ -12,7 +12,7 @@ const LoanApplication = () => {
 
     const handleLoanApplication = data => {
         console.log(data);
-        data.cost = 100;
+        data.cost = 10;
         data.Status = "Pending";
         data.FeeStatus= "unpaid";
 
