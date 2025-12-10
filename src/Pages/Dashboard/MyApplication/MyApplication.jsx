@@ -52,6 +52,18 @@ const MyApplication = () => {
         });
     }
 
+    const handlePayment = async(application) => {
+        const paymentInfo = {
+            cost: application.cost,
+            applicationId: application._id,
+            userEmail: application.email,
+            loanTitle: application.loanTitle
+        }
+        const res = await axiosSecure.post('/payment-checkout-session', paymentInfo)
+        console.log(res.data.url);
+        window.location.assign(res.data.url);
+    }
+
     return (
         <div>
             <h1>this is my application: {applications.length}</h1>
@@ -93,11 +105,10 @@ const MyApplication = () => {
                                         }
                                         {
                                             application.FeeStatus === 'unpaid' ?
-                                                <Link to={`/dashboard/payment/${application._id}`}>
-                                                    <button className='btn btn-square hover:bg-amber-300'>
-                                                        <MdPayments />
-                                                    </button>
-                                                </Link>
+
+                                                <button onClick={() => handlePayment(application)} className='btn btn-square hover:bg-amber-300'>
+                                                    <MdPayments />
+                                                </button>
                                                 : <button className='btn btn-square hover:bg-amber-300'>
                                                     <BiCheck />
                                                 </button>

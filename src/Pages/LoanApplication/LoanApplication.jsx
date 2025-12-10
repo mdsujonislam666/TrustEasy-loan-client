@@ -3,18 +3,20 @@ import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useAuth from '../../Hooks/useAuth';
+import { useNavigate } from 'react-router';
 
 
 const LoanApplication = () => {
     const { register, handleSubmit } = useForm();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
+    const navigate = useNavigate();
 
     const handleLoanApplication = data => {
         console.log(data);
         data.cost = 10;
         data.Status = "Pending";
-        data.FeeStatus= "unpaid";
+        data.FeeStatus = "unpaid";
 
         Swal.fire({
             title: "Can you wnat to apply for loan?",
@@ -23,20 +25,23 @@ const LoanApplication = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, I Agree!"
+            confirmButtonText: "Confirm and Continue Payment!"
         }).then((result) => {
             if (result.isConfirmed) {
 
                 // save the application info to database
                 axiosSecure.post('/loanApplications', data)
-                .then(res =>{
-                    console.log('after saving application', res.data);
-                })
-                Swal.fire({
-                    title: "Send",
-                    text: "Your Application is send",
-                    icon: "success"
-                });
+                    .then(res => {
+                        console.log('after saving application', res.data);
+                        navigate('/dashboard/my-application')
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Parcel has created. Please Pay",
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
+                    })
             }
         });
     }
@@ -51,7 +56,7 @@ const LoanApplication = () => {
                             <div>
                                 <label className="label">Email</label>
                                 <input type="email" {...register('email', { required: true })}
-                                defaultValue={user?.email} className="input" placeholder="Email" readOnly />
+                                    defaultValue={user?.email} className="input" placeholder="Email" readOnly />
 
                                 <label className="label">Loan Title</label>
                                 <input type="text" {...register('loanTitle')} className="input" placeholder="Loan Title" />
@@ -61,13 +66,13 @@ const LoanApplication = () => {
                             </div>
                             <div>
                                 <label className="label">First Name</label>
-                                <input type="text" {...register('firstName',{ required: true })} className="input" placeholder="First Name" />
+                                <input type="text" {...register('firstName', { required: true })} className="input" placeholder="First Name" />
 
                                 <label className="label">Last Name</label>
-                                <input type="text" {...register('lastName',{ required: true })} className="input" placeholder="Last Name" />
+                                <input type="text" {...register('lastName', { required: true })} className="input" placeholder="Last Name" />
 
                                 <label className="label">Contact Number</label>
-                                <input type="number" {...register('contactNumber',{ required: true })} className="input" placeholder="Contact number" />
+                                <input type="number" {...register('contactNumber', { required: true })} className="input" placeholder="Contact number" />
 
                                 <label className="label">National ID / Passport Number</label>
                                 <input type="Number" {...register('nationalID', { required: true })} className="input" placeholder="National Id / Passport Number" />
@@ -79,7 +84,7 @@ const LoanApplication = () => {
                                 <input type="text" {...register('monthlyIncome', { required: true })} className="input" placeholder="Monthly Income" />
 
                                 <label className="label">Loan Amount</label>
-                                <input type="number" {...register('loanAmount',{ required: true })} className="input" placeholder="Loan Amount" />
+                                <input type="number" {...register('loanAmount', { required: true })} className="input" placeholder="Loan Amount" />
 
                                 <label className="label">Address</label>
                                 <input type="text" {...register('address')} className="input" placeholder="Address" />
