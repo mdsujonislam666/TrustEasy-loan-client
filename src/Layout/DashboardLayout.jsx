@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import { FaFileInvoiceDollar } from "react-icons/fa";
+import { FcManager } from "react-icons/fc";
 
 const DashboardLayout = () => {
     return (
@@ -36,6 +37,10 @@ const DashboardLayout = () => {
                         {/* our dashboard links */}
                         <li>
                             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Applications" to="/dashboard/my-application" ><FaFileInvoiceDollar /><span className="is-drawer-close:hidden">My Applications</span></NavLink>
+                        </li>
+                        {/* manage role */}
+                        <li>
+                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Role" to="/dashboard/manage-users" ><FcManager /><span className="is-drawer-close:hidden">Manage Role</span></NavLink>
                         </li>
 
                         {/* List item */}

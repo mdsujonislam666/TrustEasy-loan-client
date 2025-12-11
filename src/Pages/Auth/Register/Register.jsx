@@ -5,6 +5,7 @@ import useAuth from '../../../Hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
 import axios from 'axios';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -12,8 +13,8 @@ const Register = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [show, setShow] = useState(false);
+    const axiosSecure = useAxiosSecure();
 
-    console.log('register', location);
 
     const handleRegistration = (data) => {
 
@@ -23,14 +24,13 @@ const Register = () => {
                 "Password must be at lest 8 character long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
             )
         }
+        console.log(data);
 
-        console.log('after register', data.photo[0]);
 
         const profileImg = data.photo[0];
 
         createUser(data.email, data.password)
-            .then(result => {
-                console.log(result.user);
+            .then(() => {
 
                 // store the image and get the photo url
                 const formData = new FormData();
@@ -40,12 +40,26 @@ const Register = () => {
                 axios.post(image_API_URL, formData)
                     .then(res => {
                         console.log(res.data);
-                        console.log('after image upload', res.data.data.url);
+                        const photoURL = res.data.data.url;
+
+                        // create user in the database
+                        const usersInfo = {
+                            email: data.email,
+                            displayName: data.name,
+                            role: data.role,
+                            photoURL: photoURL
+                        }
+                        axiosSecure.post('/users', usersInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log('user created in the database');
+                                }
+                            })
 
                         // update user profile
                         const userProfile = {
                             displayName: data.name,
-                            photoURL: res.data.data.url
+                            photoURL: photoURL
                         }
                         updateUserProfile(userProfile)
                             .then(() => {
@@ -66,10 +80,23 @@ const Register = () => {
         signInWithGoogle()
             .then(result => {
                 console.log(result.user);
-                navigate(location?.state || '/');
+                
+
+                // create user in the database
+                const usersInfo = {
+                    email: result.user.email,
+                    displayName: result.user.displayName,
+                    photoURL: result.user.photoURL
+                }
+                axiosSecure.post('/users', usersInfo)
+                    .then(res => {
+                            console.log('user data has been stored', res.data);
+                            navigate(location?.state || '/');
+                    })
             })
             .catch(error => {
                 console.log(error);
+                toast.error(error);
             })
     }
 
@@ -90,8 +117,8 @@ const Register = () => {
                         <label className="label text-gray-800">Select Role</label>
                         <select {...register('role')} className="select" defaultValue="Select Role">
                             <option disabled={true}>Select Role</option>
-                            <option>Borrower</option>
                             <option>Manager</option>
+                            <option>Borrower</option>
                         </select>
 
                         {/* email field */}

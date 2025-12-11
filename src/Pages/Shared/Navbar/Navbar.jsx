@@ -39,9 +39,9 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <a className="btn btn-ghost lg:bg-none hidden lg:block">
+                <span className="btn btn-ghost lg:bg-none hidden lg:block">
                     <Logo></Logo>
-                </a>
+                </span>
             </div>
             <div className="navbar-end">
                 <div className='hidden lg:flex'>
