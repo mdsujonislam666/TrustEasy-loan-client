@@ -19,7 +19,7 @@ const LoanApplication = () => {
         data.FeeStatus = "unpaid";
 
         Swal.fire({
-            title: "Can you wnat to apply for loan?",
+            title: "Can you want to apply for loan?",
             text: "You won't be able to revert this!",
             icon: "warning",
             showCancelButton: true,
