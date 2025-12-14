@@ -4,12 +4,12 @@ import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import LoanCard from '../Card/LoanCard';
 
-const AvailableLoans = () => {
+const AllLoans = () => {
     const axiosSecure = useAxiosSecure();
-    const { data: availableLoans = [], isLoading, error } = useQuery({
-        queryKey: ['availableLoans'],
+    const { data: allLoans = [], isLoading, error } = useQuery({
+        queryKey: ['allLoans'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/availableLoans`)
+            const res = await axiosSecure.get(`/allLoans`)
             return res.data;
         }
     });
@@ -19,13 +19,12 @@ const AvailableLoans = () => {
     if (error) {
         return toast.error('Failed to load loans');
     }
-
     return (
         <div>
-            <h1>available loan: {availableLoans.length}</h1>
-            <div className='grid grid-cols-3'>
+            <h1>available loan: {allLoans.length}</h1>
+            <div className='grid grid-cols-3 gap-5'>
                 {
-                    availableLoans.map(loan => (
+                    allLoans.map(loan => (
                         <LoanCard key={loan._id} loan={loan}></LoanCard>
                     ))
                 }
@@ -34,4 +33,4 @@ const AvailableLoans = () => {
     );
 };
 
-export default AvailableLoans;
+export default AllLoans;

@@ -1,0 +1,32 @@
+import React from 'react';
+import { FaBangladeshiTakaSign } from 'react-icons/fa6';
+import { Link } from 'react-router';
+
+const LoanCard = ({loan}) => {
+    const {_id, loanTitle, interestRate, loanLimit, emiPlans, loanImage, description, } = loan;
+    return (
+        <div>
+            <div className="card bg-base-100 inset-shadow-sm  inset-shadow-indigo-500/50 hover:scale-105 bg-gradient-to-r from-indigo-500 via-sky-300 to-violet-500">
+                <figure className="p-5">
+                    <img
+                        src={loanImage}
+                        className="rounded-xl w-full h-40 lg:h-66" />
+                </figure>
+                <div className="card-body space-y-3">
+                    <h2 className="card-title text-2xl font-bold">{loanTitle}</h2>
+                    <p className='text-black'>{description}</p>
+                    <h1 className='font-bold flex items-center '>BTD: <span className='text-red-500'><FaBangladeshiTakaSign size={15} /></span><span className='text-white'>{loanLimit}</span></h1>
+                    <div className='flex justify-between'>
+                        <h3 className='font-bold cursor-pointer text-indigo-600 px-5 py-1 bg-amber-300 rounded-xl'>{interestRate}</h3>
+                        <h2 className='text-black font-bold'>{emiPlans}</h2>
+                    </div>
+                    <div className="card-actions">
+                        <Link to={`/productDetails/${_id}`} className="btn btn-primary w-full">View Details</Link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default LoanCard;

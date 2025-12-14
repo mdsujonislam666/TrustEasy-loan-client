@@ -15,6 +15,7 @@ import PaymentCancelled from "../Pages/Dashboard/Payment/PaymentCancelled";
 import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 import UserRoleInfo from "../Pages/Dashboard/UserRoleInfo/UserRoleInfo";
 import AddLoan from "../Pages/Dashboard/AddLoan/AddLoan";
+import AllLoans from "../Components/AllLoans/AllLoans";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
         {
           path: 'loan-application',
           element: <PrivateRoute><LoanApplication></LoanApplication></PrivateRoute>
+        },
+        {
+          path: 'allLoans',
+          element: <AllLoans></AllLoans>
         },
         {
           path: 'manager',
