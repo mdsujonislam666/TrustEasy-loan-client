@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import useAuth from '../../Hooks/useAuth';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 
 const LoanApplication = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, setValue } = useForm();
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const navigate = useNavigate();
+
+
+    const { state } = useLocation();
+    const loanDetails = state || {};
+    useEffect(() => {
+        if (loanDetails?.loanTitle) {
+            setValue('loanTitle', loanDetails.loanTitle);
+            setValue('interestRate', loanDetails.interestRate);
+        }
+    }, [loanDetails, setValue]);
 
     const handleLoanApplication = data => {
         console.log(data);
@@ -59,10 +69,10 @@ const LoanApplication = () => {
                                     defaultValue={user?.email} className="input" placeholder="Email" readOnly />
 
                                 <label className="label">Loan Title</label>
-                                <input type="text" {...register('loanTitle')} className="input" placeholder="Loan Title" />
+                                <input type="text" {...register('loanTitle')} className="input"  placeholder="Loan Title" />
 
                                 <label className="label">Interest Rate</label>
-                                <input type="text" {...register('interestRate')} className="input" placeholder="Interest Rate" />
+                                <input type="text" {...register('interestRate')} className="input"  placeholder="Interest Rate" />
                             </div>
                             <div>
                                 <label className="label">First Name</label>

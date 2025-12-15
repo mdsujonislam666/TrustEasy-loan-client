@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 
 const LoanCard = ({loan}) => {
     const {_id, loanTitle, interestRate, loanLimit, emiPlans, loanImage, description, } = loan;
+    console.log(_id);
     return (
         <div>
             <div className="card bg-base-100 inset-shadow-sm  inset-shadow-indigo-500/50 hover:scale-105 bg-gradient-to-r from-indigo-500 via-sky-300 to-violet-500">
@@ -21,7 +22,7 @@ const LoanCard = ({loan}) => {
                         <h2 className='text-black font-bold'>{emiPlans}</h2>
                     </div>
                     <div className="card-actions">
-                        <Link to={`/productDetails/${_id}`} className="btn btn-primary w-full">View Details</Link>
+                        <Link to={`/dashboard/loan-details/${_id}`} id={_id} className="btn btn-primary w-full">View Details</Link>
                     </div>
                 </div>
             </div>

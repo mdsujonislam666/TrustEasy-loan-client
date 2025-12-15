@@ -16,6 +16,7 @@ import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
 import UserRoleInfo from "../Pages/Dashboard/UserRoleInfo/UserRoleInfo";
 import AddLoan from "../Pages/Dashboard/AddLoan/AddLoan";
 import AllLoans from "../Components/AllLoans/AllLoans";
+import LoanDetails from "../Pages/Dashboard/LoanDetails/LoanDetails";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
       {
         path: 'add-loan',
         Component: AddLoan
+      },
+      {
+        path: 'loan-details/:id',
+        Component: LoanDetails
       }
     ]
   }
