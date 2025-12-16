@@ -1,0 +1,96 @@
+import React from 'react';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
+import { FaTrashCan } from 'react-icons/fa6';
+import { RxUpdate } from 'react-icons/rx';
+import { Link } from 'react-router';
+
+const AdminAllLoans = () => {
+    const axiosSecure = useAxiosSecure();
+    const { data: adminAllLoans = [], isLoading, error } = useQuery({
+        queryKey: ['adminAllLoans'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/adminAllLoans`)
+            return res.data;
+        }
+    });
+    if (isLoading) {
+        return <span className="loading loading-bars loading-xl"></span>
+    }
+    if (error) {
+        return toast.error('Failed to load loans');
+    }
+    return (
+        <div className="overflow-x-auto">
+            <table className="table">
+                {/* head */}
+                <thead>
+                    <tr>
+                        <th>
+                            <label>
+                                Serial
+                            </label>
+                        </th>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Interest</th>
+                        <th>Category</th>
+                        <th>Created By</th>
+                        <th>Show on Home</th>
+                        <th>Actions</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        adminAllLoans.map((allLoan, index) => <tr>
+                            <th>
+                                <label>
+                                    {index + 1}
+                                    {/* <input type="checkbox" className="checkbox" /> */}
+                                </label>
+                            </th>
+                            <td>
+                                <div className="flex items-center gap-3">
+                                    <div className="avatar">
+                                        <div className="mask mask-squircle h-12 w-12">
+                                            <img
+                                                src={allLoan.loanImage}
+                                                alt="Avatar Tailwind CSS Component" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <h3>{allLoan.loanTitle}</h3>
+                            </td>
+                            <td>{allLoan.interestRate}</td>
+                            <th>
+                                <p>{allLoan.category}</p>
+                            </th>
+                            <th>
+                                <p>{allLoan.createdBy}</p>
+                            </th>
+                            <th>
+                                <p>{allLoan.showHome}</p>
+                            </th>
+                            <th className='flex gap-2'>
+                                <button className='btn btn-square hover:bg-amber-300'>
+                                    <FaTrashCan />
+                                </button>
+
+                                <Link to={`/dashboard/update-loan/${allLoan._id}`} className='btn btn-square hover:bg-amber-300'>
+                                    <RxUpdate />
+                                </Link>
+                            </th>
+                        </tr>)
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    );
+};
+
+export default AdminAllLoans;

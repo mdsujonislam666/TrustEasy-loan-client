@@ -43,9 +43,13 @@ const DashboardLayout = () => {
                         <li>
                             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Role" to="/dashboard/manage-users" ><FcManager /><span className="is-drawer-close:hidden">Manage Role</span></NavLink>
                         </li>
-                        {/* Add loan */}
+                        {/* Add loans */}
                         <li>
                             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Add Loan" to="/dashboard/add-loan" ><FaAddressCard /><span className="is-drawer-close:hidden">Add Loan</span></NavLink>
+                        </li>
+                        {/* All loans */}
+                        <li>
+                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="All Loan" to="/dashboard/all-loans" ><FaAddressCard /><span className="is-drawer-close:hidden">All Loan</span></NavLink>
                         </li>
                         {/* List item */}
                         <li>

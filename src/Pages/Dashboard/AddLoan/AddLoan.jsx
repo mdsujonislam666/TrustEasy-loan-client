@@ -3,10 +3,12 @@ import { useForm } from 'react-hook-form';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import useAuth from '../../../Hooks/useAuth';
 
 const AddLoan = () => {
     const { register, handleSubmit } = useForm();
     const axiosSecure = useAxiosSecure();
+    const {user} = useAuth();
 
 
     const handleLoans = data => {
@@ -37,9 +39,11 @@ const AddLoan = () => {
                         const usersInfo = {
                             loanTitle: data.loanTitle,
                             interestRate: data.interestRate,
+                            category: data.category,
                             loanLimit: data.loanLimit,
                             documents: data.documents,
                             emiPlans: data.emiPlans,
+                            createdBy: user.displayName,
                             loanImage: photoURL,
                             description: data.description,
                             showHome: data.showHome
@@ -78,6 +82,9 @@ const AddLoan = () => {
                                 <label className="label">Interest Rate</label>
                                 <input type="text" {...register('interestRate')} className="input" placeholder="Interest Rate" />
 
+                                <label className="label">Category</label>
+                                <input type="text" {...register('category')} className="input" placeholder="Category" />
+
                                 <label className="label">Max Loan Limit</label>
                                 <input type="number" {...register('loanLimit', { required: true })} className="input" placeholder="Max Loan Limit" />
 
@@ -98,7 +105,7 @@ const AddLoan = () => {
                                 <select {...register('showHome')} className="select" defaultValue="Select plans">
                                     <option disabled={true}>Select Plans</option>
                                     <option>Yes</option>
-                                    <option>On</option>
+                                    <option>No</option>
                                 </select>
 
                                 {/* photo image field */}

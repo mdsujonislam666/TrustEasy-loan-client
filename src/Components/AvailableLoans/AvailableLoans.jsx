@@ -22,8 +22,11 @@ const AvailableLoans = () => {
 
     return (
         <div>
-            <h1>available loan: {availableLoans.length}</h1>
-            <div className='grid grid-cols-3'>
+            <div className='py-10 space-y-5'>
+                <h2 className='text-5xl font-bold text-center'>Choose-<span className='text-red-600'>Your Loans</span></h2>
+                <p className='text-center font-bold text-2xl'>Your smile is our real achievement — and we work every day to reach that goal.</p>
+            </div>
+            <div className='grid grid-cols-3 gap-5'>
                 {
                     availableLoans.map(loan => (
                         <LoanCard key={loan._id} loan={loan}></LoanCard>
