@@ -5,10 +5,11 @@ import { toast } from 'react-toastify';
 import { FaTrashCan } from 'react-icons/fa6';
 import { RxUpdate } from 'react-icons/rx';
 import { Link } from 'react-router';
+import Swal from 'sweetalert2';
 
 const AdminAllLoans = () => {
     const axiosSecure = useAxiosSecure();
-    const { data: adminAllLoans = [], isLoading, error } = useQuery({
+    const { data: adminAllLoans = [], isLoading, error, refetch } = useQuery({
         queryKey: ['adminAllLoans'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/adminAllLoans`)
@@ -21,6 +22,38 @@ const AdminAllLoans = () => {
     if (error) {
         return toast.error('Failed to load loans');
     }
+
+
+    const handleLoanDelete = id => {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/loans/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+
+                        if (res.data.deletedCount) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+
+            }
+        });
+    }
+
     return (
         <div className="overflow-x-auto">
             <table className="table">
@@ -44,7 +77,7 @@ const AdminAllLoans = () => {
                 </thead>
                 <tbody>
                     {
-                        adminAllLoans.map((allLoan, index) => <tr>
+                        adminAllLoans.map((allLoan, index) => <tr key={allLoan._id}>
                             <th>
                                 <label>
                                     {index + 1}
@@ -76,7 +109,7 @@ const AdminAllLoans = () => {
                                 <p>{allLoan.showHome}</p>
                             </th>
                             <th className='flex gap-2'>
-                                <button className='btn btn-square hover:bg-amber-300'>
+                                <button onClick={()=>handleLoanDelete(allLoan._id)} className='btn btn-square hover:bg-amber-300'>
                                     <FaTrashCan />
                                 </button>
 
