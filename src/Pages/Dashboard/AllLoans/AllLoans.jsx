@@ -54,6 +54,30 @@ const AdminAllLoans = () => {
         });
     }
 
+    const handleShowHome = (id, currentValue) => {
+        const loanInfo = {
+            showHome: currentValue === 'Yes'? "No" : "Yes"
+        }
+        axiosSecure.put(`/adminAllLoans/${id}`, loanInfo)
+            .then(res => {
+                if (res.data.result.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Show on Home set Updated!",
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
+            })
+            .catch(() =>{
+                toast.error("Failed to update showHome");
+            })
+    }
+
+
+
     return (
         <div className="overflow-x-auto">
             <table className="table">
@@ -109,7 +133,18 @@ const AdminAllLoans = () => {
                                 <p>{allLoan.showHome}</p>
                             </th>
                             <th className='flex gap-2'>
-                                <button onClick={()=>handleLoanDelete(allLoan._id)} className='btn btn-square hover:bg-amber-300'>
+
+                                {
+                                    allLoan.showHome === "Yes" ?
+                                        <button onClick={()=> handleShowHome(allLoan._id, allLoan.showHome)} className='btn btn-square hover:bg-amber-300'>
+                                            No
+                                        </button> :
+                                        <button onClick={()=> handleShowHome(allLoan._id, allLoan.showHome)} className='btn btn-square hover:bg-amber-300'>
+                                            Yes
+                                        </button>
+                                }
+
+                                <button onClick={() => handleLoanDelete(allLoan._id)} className='btn btn-square hover:bg-amber-300'>
                                     <FaTrashCan />
                                 </button>
 
