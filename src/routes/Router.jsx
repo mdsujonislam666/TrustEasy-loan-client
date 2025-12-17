@@ -19,6 +19,7 @@ import AllLoans from "../Components/AllLoans/AllLoans";
 import LoanDetails from "../Pages/Dashboard/LoanDetails/LoanDetails";
 import AdminAllLoans from "../Pages/Dashboard/AllLoans/AllLoans";
 import UpdateLoans from "../Pages/Dashboard/UpdateLoans/UpdateLoans";
+import AllApplications from "../Pages/Dashboard/allApplications/AllApplications";
 
 export const router = createBrowserRouter([
   {
@@ -100,6 +101,10 @@ export const router = createBrowserRouter([
       {
         path: 'update-loan/:id',
         Component: UpdateLoans,
+      },
+      {
+        path: 'allLoanApplications',
+        Component: AllApplications
       }
     ]
   }

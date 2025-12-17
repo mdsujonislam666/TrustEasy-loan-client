@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet } from 'react-router';
 import { FaFileInvoiceDollar } from "react-icons/fa";
 import { FcManager } from "react-icons/fc";
 import { FaAddressCard } from 'react-icons/fa6';
+import { IoIosApps } from "react-icons/io";
 
 const DashboardLayout = () => {
     return (
@@ -50,6 +51,10 @@ const DashboardLayout = () => {
                         {/* All loans */}
                         <li>
                             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="All Loan" to="/dashboard/all-loans" ><FaAddressCard /><span className="is-drawer-close:hidden">All Loan</span></NavLink>
+                        </li>
+                        {/* All Applications */}
+                        <li>
+                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="All Applications" to="/dashboard/allLoanApplications" ><IoIosApps /><span className="is-drawer-close:hidden">All Applications</span></NavLink>
                         </li>
                         {/* List item */}
                         <li>
