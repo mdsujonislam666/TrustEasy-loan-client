@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
@@ -9,6 +9,10 @@ import { Link } from 'react-router';
 
 const ManageLoans = () => {
     const { user } = useAuth();
+    const [searchText, setSearchText] = useState('');
+
+
+
     const axiosSecure = useAxiosSecure();
     const { data: managerLoans = [], refetch } = useQuery({
         queryKey: ['managerLoans', user?.email],
@@ -17,6 +21,10 @@ const ManageLoans = () => {
             return res.data;
         }
     })
+    const filteredLoans = managerLoans.filter(loan =>
+        loan.loanTitle.toLowerCase().includes(searchText.toLowerCase()) ||
+        loan.category.toLowerCase().includes(searchText.toLowerCase())
+    );
 
     const handleApplicationDelete = id => {
         console.log(id);
@@ -49,9 +57,32 @@ const ManageLoans = () => {
         });
     }
 
+
     return (
         <div>
+            <div className='py-10 space-y-5'>
+                <h2 className='text-5xl font-bold text-center'>Search-<span className='text-red-600'>Your Loans</span></h2>
 
+                <form className='mt-5 flex gap-2 justify-center'>
+                    <label className="input rounded-full mb-2">
+                        <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                                strokeLinejoin="round"
+                                strokeLinecap="round"
+                                strokeWidth="2.5"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </g>
+                        </svg>
+                        <input onChange={(e) => setSearchText(e.target.value)} name='search' type="search" placeholder="Search" />
+                    </label>
+                    <button className='btn btn-primary rounded-full'>Search</button>
+                </form>
+
+            </div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -67,7 +98,7 @@ const ManageLoans = () => {
                     </thead>
                     <tbody>
                         {
-                            managerLoans.map((managerLoan, index) => <tr key={managerLoan._id}>
+                            filteredLoans.map((managerLoan, index) => <tr key={managerLoan._id} >
                                 <td>
                                     {index + 1}
                                 </td>

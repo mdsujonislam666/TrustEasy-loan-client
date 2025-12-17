@@ -5,6 +5,7 @@ import { FcManager } from "react-icons/fc";
 import { FaAddressCard } from 'react-icons/fa6';
 import { IoIosApps } from "react-icons/io";
 import { MdOutlineManageHistory } from "react-icons/md";
+import { MdPending } from "react-icons/md";
 
 const DashboardLayout = () => {
     return (
@@ -60,6 +61,10 @@ const DashboardLayout = () => {
                         {/* manage loans */}
                         <li>
                             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Loans" to="/dashboard/manageLoans" ><MdOutlineManageHistory /><span className="is-drawer-close:hidden">Manage Loans</span></NavLink>
+                        </li>
+                        {/* pending loans */}
+                        <li>
+                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Pending Loans" to="/dashboard/pendingLoans" ><MdPending /><span className="is-drawer-close:hidden">Pending Loans</span></NavLink>
                         </li>
                         {/* List item */}
                         <li>

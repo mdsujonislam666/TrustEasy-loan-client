@@ -22,6 +22,7 @@ import UpdateLoans from "../Pages/Dashboard/UpdateLoans/UpdateLoans";
 import AllApplications from "../Pages/Dashboard/allApplications/AllApplications";
 import ManageLoans from "../Pages/Dashboard/ManageLoans/ManageLoans";
 import ManagerUpdateLoans from "../Pages/Dashboard/ManagerUpdateLoan/ManagerUpdateLoans";
+import PendingLoans from "../Pages/Dashboard/PendingLoans/PendingLoans";
 
 export const router = createBrowserRouter([
   {
@@ -116,6 +117,10 @@ export const router = createBrowserRouter([
         path: 'update-loan/:id',
         Component: ManagerUpdateLoans,
       },
+      {
+        path: 'pendingLoans',
+        Component: PendingLoans
+      }
     ]
   }
 ]);
