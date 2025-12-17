@@ -148,7 +148,7 @@ const AdminAllLoans = () => {
                                     <FaTrashCan />
                                 </button>
 
-                                <Link to={`/dashboard/update-loan/${allLoan._id}`} className='btn btn-square hover:bg-amber-300'>
+                                <Link to={`/dashboard/update-loans/${allLoan._id}`} className='btn btn-square hover:bg-amber-300'>
                                     <RxUpdate />
                                 </Link>
                             </th>

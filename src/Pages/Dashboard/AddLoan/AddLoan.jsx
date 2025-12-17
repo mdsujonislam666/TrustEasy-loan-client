@@ -44,6 +44,7 @@ const AddLoan = () => {
                             documents: data.documents,
                             emiPlans: data.emiPlans,
                             createdBy: user.displayName,
+                            email: user.email,
                             loanImage: photoURL,
                             description: data.description,
                             showHome: data.showHome
