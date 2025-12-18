@@ -2,16 +2,43 @@ import React from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
+import { toast } from 'react-toastify';
 
 const PendingLoans = () => {
     const axiosSecure = useAxiosSecure();
-    const { data: pendingLoans = [] } = useQuery({
+    const { data: pendingLoans = [], refetch } = useQuery({
         queryKey: ['pendingLoans'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/pendingLoans`)
             return res.data;
         }
     })
+    const handleApproved = async (id) => {
+        try {
+            const res = await axiosSecure.patch(`/pendingLoans/approve/${id}`);
+            if (res.data.success) {
+                toast.success("Loan Approved Successfully");
+                refetch();
+            }
+        }
+        catch (error) {
+            toast.error('Approved Failed');
+            console.log(error);;
+        }
+    }
+    const handleReject = async (id) => {
+        try {
+            const res = await axiosSecure.patch(`/pendingLoans/reject/${id}`);
+            if (res.data.success) {
+                toast.success("Loan Rejected Successfully");
+                refetch();
+            }
+        }
+        catch (error) {
+            toast.error('Rejected Failed');
+            console.log(error);;
+        }
+    }
     return (
         <div>
             pending loans: {pendingLoans.length}
@@ -41,13 +68,13 @@ const PendingLoans = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td>{pendingLoan.loanAmount}</td>
+                                <td>{pendingLoan.loanAmount} {pendingLoan.Status}</td>
                                 <td>{new Date(pendingLoan.createdAt).toLocaleDateString()}</td>
                                 <td className='flex gap-2'>
-                                    <button className='btn hover:bg-amber-300'>
+                                    <button onClick={() => handleApproved(pendingLoan._id)} className='btn hover:bg-amber-300'>
                                         Approved
                                     </button>
-                                    <button className='btn hover:bg-amber-300'>
+                                    <button onClick={() => handleReject(pendingLoan._id)} className='btn hover:bg-red-400 hover:text-white'>
                                         Rejected
                                     </button>
                                     <button className='btn btn-square hover:bg-amber-300'>
