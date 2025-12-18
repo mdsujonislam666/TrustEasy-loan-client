@@ -6,6 +6,7 @@ import { FaAddressCard } from 'react-icons/fa6';
 import { IoIosApps } from "react-icons/io";
 import { MdOutlineManageHistory } from "react-icons/md";
 import { MdPending } from "react-icons/md";
+import { ImUserCheck } from "react-icons/im";
 
 const DashboardLayout = () => {
     return (
@@ -65,6 +66,10 @@ const DashboardLayout = () => {
                         {/* pending loans */}
                         <li>
                             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Pending Loans" to="/dashboard/pendingLoans" ><MdPending /><span className="is-drawer-close:hidden">Pending Loans</span></NavLink>
+                        </li>
+                        {/* Approved Applications */}
+                        <li>
+                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approved Applications" to="/dashboard/approvedLoans" ><ImUserCheck /><span className="is-drawer-close:hidden">Approved Applications</span></NavLink>
                         </li>
                         {/* List item */}
                         <li>

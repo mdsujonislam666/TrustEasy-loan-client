@@ -1,33 +1,55 @@
 import React, { useRef, useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
 import { FaMagnifyingGlass, FaTrashCan } from 'react-icons/fa6';
-import LoanCard from '../../../Components/Card/LoanCard';
 import Swal from 'sweetalert2';
 
-const AllApplications = () => {
+const ApprovedLoans = () => {
     const axiosSecure = useAxiosSecure();
     const applicationModalRef = useRef();
     const [selectApplication, setSelectApplication] = useState(null);
-    const { data: applications = [], isLoading, error } = useQuery({
-        queryKey: ['allLoanApplications'],
+    const { data: approvedLoans = [], refetch } = useQuery({
+        queryKey: ['approvedLoans'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/allLoanApplications`)
+            const res = await axiosSecure.get(`/approvedLoans`)
             return res.data;
         }
-    });
-    if (isLoading) {
-        return <span className="loading loading-bars loading-xl"></span>
-    }
-    if (error) {
-        return toast.error('Failed to load loans');
-    }
+    })
 
-
-    const openApplicationModal = (application) => {
-        setSelectApplication(application);
+    const openApprovedLoanModal = (approvedLoans) => {
+        setSelectApplication(approvedLoans);
         applicationModalRef.current.showModal();
+    }
+
+    const handleApproveLoanDelete = id => {
+        console.log(id);
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/approvedLoans/${id}`)
+                    .then(res => {
+                        console.log(res.data);
+
+                        if (res.data.deletedCount) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+
+            }
+        });
     }
 
     return (
@@ -37,34 +59,36 @@ const AllApplications = () => {
                     {/* head */}
                     <thead>
                         <tr>
-                            <th>Serials</th>
-                            <th>Name</th>
-                            <th>Loan Category</th>
+                            <th></th>
+                            <th>Loan ID</th>
+                            <th>User</th>
                             <th>Amount</th>
-                            <th>Status</th>
+                            <th>Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            applications.map((application, index) => <tr key={application._id}>
+                            approvedLoans.map((approvedLoan, index) => <tr key={approvedLoan._id}>
                                 <th>{index + 1}</th>
+                                <td>{approvedLoan._id}</td>
                                 <td>
                                     <div className='flex flex-col'>
-                                        <div>{application.firstName} {application.lastName}</div>
+                                        <div>{approvedLoan.firstName} {approvedLoan.lastName}</div>
                                         <div>
-                                            {application.email}
+                                            {approvedLoan.email}
                                         </div>
                                     </div>
                                 </td>
-                                <td>{application.loanTitle}</td>
-                                <td>{application.loanAmount}</td>
-                                <td>{application.Status}</td>
-                                <td>
-                                    <button onClick={() => openApplicationModal(application)} className='btn btn-square hover:bg-amber-300'>
+                                <td>{approvedLoan.loanAmount} {approvedLoan.Status}</td>
+                                <td>{new Date(approvedLoan.createdAt).toLocaleDateString()}</td>
+                                <td className='flex gap-2'>
+                                    <button onClick={() => handleApproveLoanDelete(approvedLoan._id)} className='btn btn-square hover:bg-amber-300'>
+                                        <FaTrashCan />
+                                    </button>
+                                    <button onClick={() => openApprovedLoanModal(approvedLoan)} className='btn btn-square hover:bg-amber-300'>
                                         <FaMagnifyingGlass />
                                     </button>
-
                                 </td>
                             </tr>)
                         }
@@ -72,7 +96,6 @@ const AllApplications = () => {
                     </tbody>
                 </table>
             </div>
-
             <dialog ref={applicationModalRef} className="modal modal-bottom sm:modal-middle ">
                 <div className="modal-box bg-blue-200">
                     <div className="overflow-x-auto">
@@ -113,9 +136,8 @@ const AllApplications = () => {
                     </div>
                 </div>
             </dialog>
-
         </div>
     );
 };
 
-export default AllApplications;
+export default ApprovedLoans;
