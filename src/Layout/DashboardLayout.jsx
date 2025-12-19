@@ -8,8 +8,10 @@ import { MdOutlineManageHistory } from "react-icons/md";
 import { MdPending } from "react-icons/md";
 import { ImUserCheck } from "react-icons/im";
 import { FaCircleUser } from "react-icons/fa6";
+import useUserRole from '../Hooks/useUserRole';
 
 const DashboardLayout = () => {
+    const { role } = useUserRole();
     return (
         <div className="drawer lg:drawer-open max-w-7xl mx-auto">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -44,22 +46,31 @@ const DashboardLayout = () => {
                         <li>
                             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Applications" to="/dashboard/my-application" ><FaFileInvoiceDollar /><span className="is-drawer-close:hidden">My Applications</span></NavLink>
                         </li>
-                        {/* manage role */}
-                        <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Role" to="/dashboard/manage-users" ><FcManager /><span className="is-drawer-close:hidden">Manage Role</span></NavLink>
-                        </li>
+
+                        {
+                            role === "Admin" && (<>
+                                {/* manage role */}
+                                <li>
+                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Role" to="/dashboard/manage-users" ><FcManager /><span className="is-drawer-close:hidden">Manage Role</span></NavLink>
+                                </li>
+                                {/* All loans */}
+                                <li>
+                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="All Loan" to="/dashboard/all-loans" ><FaAddressCard /><span className="is-drawer-close:hidden">All Loan</span></NavLink>
+                                </li>
+                                {/* All Applications */}
+                                <li>
+                                    <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="All Applications" to="/dashboard/allLoanApplications" ><IoIosApps /><span className="is-drawer-close:hidden">All Applications</span></NavLink>
+                                </li>
+                            </>
+                            )
+                        }
+
                         {/* Add loans */}
                         <li>
                             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Add Loan" to="/dashboard/add-loan" ><FaAddressCard /><span className="is-drawer-close:hidden">Add Loan</span></NavLink>
                         </li>
-                        {/* All loans */}
-                        <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="All Loan" to="/dashboard/all-loans" ><FaAddressCard /><span className="is-drawer-close:hidden">All Loan</span></NavLink>
-                        </li>
-                        {/* All Applications */}
-                        <li>
-                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="All Applications" to="/dashboard/allLoanApplications" ><IoIosApps /><span className="is-drawer-close:hidden">All Applications</span></NavLink>
-                        </li>
+
+
                         {/* manage loans */}
                         <li>
                             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Manage Loans" to="/dashboard/manageLoans" ><MdOutlineManageHistory /><span className="is-drawer-close:hidden">Manage Loans</span></NavLink>

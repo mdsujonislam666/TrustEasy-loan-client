@@ -25,28 +25,29 @@ import ManagerUpdateLoans from "../Pages/Dashboard/ManagerUpdateLoan/ManagerUpda
 import PendingLoans from "../Pages/Dashboard/PendingLoans/PendingLoans";
 import ApprovedLoans from "../Pages/Dashboard/ApprovedLoans/ApprovedLoans";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
     children: [
-        {
-            index: true,
-            Component: Home
-        },
-        {
-          path: 'loan-application',
-          element: <PrivateRoute><LoanApplication></LoanApplication></PrivateRoute>
-        },
-        {
-          path: 'allLoans',
-          element: <AllLoans></AllLoans>
-        },
-        {
-          path: 'manager',
-          element: <PrivateRoute><Manager></Manager></PrivateRoute>
-        }
+      {
+        index: true,
+        Component: Home
+      },
+      {
+        path: 'loan-application',
+        element: <PrivateRoute><LoanApplication></LoanApplication></PrivateRoute>
+      },
+      {
+        path: 'allLoans',
+        element: <AllLoans></AllLoans>
+      },
+      {
+        path: 'manager',
+        element: <PrivateRoute><Manager></Manager></PrivateRoute>
+      }
     ]
   },
   {
@@ -70,14 +71,14 @@ export const router = createBrowserRouter([
       {
         path: 'my-application',
         Component: MyApplication
-      }, 
+      },
       {
         path: 'payment/:applicationId',
-        element: <Payment/>
-      }, 
+        element: <Payment />
+      },
       {
         path: 'payment-success',
-        Component:PaymentSuccess
+        Component: PaymentSuccess
       },
       {
         path: 'payment-cancelled',
@@ -85,10 +86,18 @@ export const router = createBrowserRouter([
       },
       {
         path: 'manage-users',
-        Component: ManageUsers
+        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
       },
       {
-        path: 'userRole-info',
+        path: 'allLoanApplications',
+        element: <AdminRoute><AllApplications></AllApplications></AdminRoute>
+      },
+      {
+        path: 'all-loans',
+        element: <AdminRoute><AdminAllLoans></AdminAllLoans></AdminRoute>
+      },
+      {
+        path: 'userRole-info/:id',
         Component: UserRoleInfo
       },
       {
@@ -99,18 +108,12 @@ export const router = createBrowserRouter([
         path: 'loan-details/:id',
         Component: LoanDetails
       },
-      {
-        path: 'all-loans',
-        Component: AdminAllLoans
-      },
+
       {
         path: 'update-loans/:id',
         Component: UpdateLoans,
       },
-      {
-        path: 'allLoanApplications',
-        Component: AllApplications
-      }, 
+
       {
         path: 'manageLoans',
         Component: ManageLoans
@@ -126,7 +129,7 @@ export const router = createBrowserRouter([
       {
         path: 'approvedLoans',
         Component: ApprovedLoans
-      },{
+      }, {
         path: "myProfile",
         Component: MyProfile
       }

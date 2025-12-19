@@ -27,7 +27,7 @@ const LoanDetails = () => {
         return toast.error('Failed to load loans');
     }
     return (
-        <div className='max-w-3xl mx-auto rounded-b-lg bg-blue-100 inset-shadow-sm inset-shadow-indigo-500/50 bg-primary'>
+        <div className='card-body items-center p-5 m-5 mb-5 bg-amber-200 rounded-xl'>
             <div className='grid grid-cols-1 lg:grid-cols-2 items-center'>
                 <div>
                     <figure className="p-5 inset-shadow-indigo-500/50 ">

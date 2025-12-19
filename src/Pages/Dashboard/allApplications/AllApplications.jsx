@@ -59,7 +59,9 @@ const AllApplications = () => {
                                 </td>
                                 <td>{application.loanTitle}</td>
                                 <td>{application.loanAmount}</td>
-                                <td>{application.Status}</td>
+                                <td>
+                                    <p className={`${application.Status === 'Approved' ? 'text-green-500 font-bold': 'text-red-500'}`}>{application.Status}</p>
+                                </td>
                                 <td>
                                     <button onClick={() => openApplicationModal(application)} className='btn btn-square hover:bg-amber-300'>
                                         <FaMagnifyingGlass />
