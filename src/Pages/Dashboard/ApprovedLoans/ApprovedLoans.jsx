@@ -80,7 +80,7 @@ const ApprovedLoans = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td>{approvedLoan.loanAmount} {approvedLoan.Status}</td>
+                                <td>{approvedLoan.loanAmount}</td>
                                 <td>{new Date(approvedLoan.createdAt).toLocaleDateString()}</td>
                                 <td className='flex gap-2'>
                                     <button onClick={() => handleApproveLoanDelete(approvedLoan._id)} className='btn btn-square hover:bg-amber-300'>

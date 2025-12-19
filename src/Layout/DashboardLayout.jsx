@@ -7,6 +7,7 @@ import { IoIosApps } from "react-icons/io";
 import { MdOutlineManageHistory } from "react-icons/md";
 import { MdPending } from "react-icons/md";
 import { ImUserCheck } from "react-icons/im";
+import { FaCircleUser } from "react-icons/fa6";
 
 const DashboardLayout = () => {
     return (
@@ -70,6 +71,10 @@ const DashboardLayout = () => {
                         {/* Approved Applications */}
                         <li>
                             <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approved Applications" to="/dashboard/approvedLoans" ><ImUserCheck /><span className="is-drawer-close:hidden">Approved Applications</span></NavLink>
+                        </li>
+                        {/* Manager profile */}
+                        <li>
+                            <NavLink className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Profile" to="/dashboard/myProfile" ><FaCircleUser /><span className="is-drawer-close:hidden">My Profile</span></NavLink>
                         </li>
                         {/* List item */}
                         <li>

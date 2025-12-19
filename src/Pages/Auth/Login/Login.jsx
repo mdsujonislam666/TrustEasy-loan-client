@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import useAuth from '../../../Hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
+import axios from 'axios';
 
 
 const Login = () => {
@@ -36,15 +37,35 @@ const Login = () => {
             })
 
     }
-
     const handleGoogleSingIn = () => {
         signInWithGoogle()
             .then(result => {
                 console.log(result.user);
-                navigate(location?.state || '/');
+
+
+                // create user in the database
+                const usersInfo = {
+                    email: result.user.email,
+                    displayName: result.user.displayName,
+                    photoURL: result.user.photoURL,
+                }
+                axios.post('http://localhost:3000/users', usersInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('user saved to DB');
+                        }
+                        else {
+                            console.log(res.data.message);
+                        }
+                        navigate(location?.state || '/');
+                    })
+                    .catch(err => {
+                        console.log('db save error', err);
+                    })
             })
             .catch(error => {
                 console.log(error);
+                toast.error(error);
             })
     }
 
@@ -81,7 +102,7 @@ const Login = () => {
                     {/* password field */}
                     <label className="label text-gray-800">Password</label>
                     <div className='relative lg:pr-4'>
-                        <input type={show ? "text" : "password"} {...register('password', { required: true, minLength:6 })} className="input" placeholder="Password" />
+                        <input type={show ? "text" : "password"} {...register('password', { required: true, minLength: 6 })} className="input" placeholder="Password" />
 
                         <span onClick={() => setShow(!show)} className='absolute right-[25px] top-2 cursor-pointer z-50'>{show ? <IoEye size={22} /> : <IoEyeOff size={22} />}</span>
                     </div>
