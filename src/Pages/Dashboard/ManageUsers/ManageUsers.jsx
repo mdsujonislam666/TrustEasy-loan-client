@@ -9,8 +9,10 @@ import Swal from 'sweetalert2';
 
 const ManageUsers = () => {
     const axiosSecure = useAxiosSecure();
-    const userModalRef = useRef();
+    const applicationModalRef = useRef();
+
     const [searchText, setSearchText] = useState('')
+    const [selectApplication, setSelectApplication] = useState(null);
 
 
     const { data: users = [], refetch } = useQuery({
@@ -83,11 +85,18 @@ const ManageUsers = () => {
 
     }
 
+    const openApplicationModal = async(user) => {
+        const res = await axiosSecure.get(`/suspends/${user._id}`)
+        setSelectApplication(res.data);
+        applicationModalRef.current.showModal();
+    }
+
+
 
     return (
         <div>
-            <div className='py-10 space-y-5'>
-                <h2 className='text-5xl font-bold text-center'>Search-<span className='text-red-600'>Your Loans</span></h2>
+            <div className='py-10 space-y-5 bg-amber-200'>
+                <h2 className='text-5xl font-bold text-center'>Search-<span className='text-red-600'>User</span></h2>
 
                 <form className='mt-5 flex gap-2 justify-center'>
                     <label className="input rounded-full mb-2">
@@ -107,20 +116,19 @@ const ManageUsers = () => {
                     </label>
                     <button className='btn btn-primary rounded-full'>Search</button>
                 </form>
-                <p>search text: {searchText}</p>
-
             </div>
 
             <div className="overflow-x-auto">
-                <table className="table table-zebra">
+                <table className="table table-zebra ">
                     {/* head */}
-                    <thead>
+                    <thead className='bg-gradient-to-r from-slate-600 via-zinc-400 to-violet-400'>
                         <tr>
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
                             <th>Admin Action</th>
+                            <th>User-Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -131,16 +139,22 @@ const ManageUsers = () => {
                                 <td>{user.displayName}</td>
                                 <td>{user.email}</td>
                                 <td>{user.role}</td>
+
                                 <td>
                                     {
                                         user.role === 'Admin' ? <button onClick={() => handleRemoveAdmin(user)} className='bg-green-500 btn btn-square hover:bg-amber-300'><GrUserAdmin /></button> :
                                             <button onClick={() => handleMakeAdmin(user)} className='bg-red-500 btn btn-square hover:bg-amber-300'><FaUserLock /></button>
                                     }
                                 </td>
-                                <td>
+                                <td>{ user.Status }
+                                </td>
+                                <td className='flex gap-2'>
                                     <Link to={`/dashboard/userRole-info/${user._id}`} id={user._id} className='btn btn-square hover:bg-amber-300'>
                                         <RxUpdate />
                                     </Link>
+                                    {
+                                        user.status === "suspend" && <button onClick={() => openApplicationModal(user)} className='btn  hover:bg-amber-300'>Reason</button>
+                                    }
                                 </td>
                             </tr>)
                         }
@@ -149,14 +163,22 @@ const ManageUsers = () => {
                 </table>
             </div>
 
-            <dialog ref={userModalRef} className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box">
-                    <h3 className="font-bold text-lg">UserInfo!</h3>
-
-                    <div>
+            <dialog ref={applicationModalRef} className="modal modal-bottom sm:modal-middle ">
+                <div className="modal-box bg-blue-200">
+                    <div className="overflow-x-auto">
                         <div>
-                            <img src={users.photoURL} alt="" />
-                            <h1>{users.displayName}</h1>
+                            {
+                                selectApplication && (
+                                    <div className="modal-box mx-auto inset-shadow-sm inset-shadow-indigo-500/50 bg-gradient-to-r from-indigo-500 via-sky-300 to-violet-500">
+                                        <p className="py-4 text-xl font-bold text-center">Your Suspend Reasons</p>
+
+                                        <p className='text-gray-700'><strong className='text-black'>Suspend Reason: </strong>{selectApplication.suspendReason }</p>
+
+                                        <p className='text-gray-700'><strong className='text-black'>Suspend Feedback: </strong>{selectApplication.suspendFeedback }</p>
+                                    </div>
+                                )
+                            }
+
                         </div>
                     </div>
 
@@ -168,6 +190,7 @@ const ManageUsers = () => {
                     </div>
                 </div>
             </dialog>
+
 
         </div>
     );

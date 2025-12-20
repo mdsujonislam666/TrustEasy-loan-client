@@ -44,10 +44,6 @@ export const router = createBrowserRouter([
         path: 'allLoans',
         element: <AllLoans></AllLoans>
       },
-      {
-        path: 'manager',
-        element: <PrivateRoute><Manager></Manager></PrivateRoute>
-      }
     ]
   },
   {

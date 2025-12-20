@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../../../Components/Logo/Logo';
 import useAuth from '../../../Hooks/useAuth';
 import { Link, NavLink, useNavigate } from 'react-router';
@@ -6,6 +6,17 @@ import { Link, NavLink, useNavigate } from 'react-router';
 const Navbar = () => {
     const { user, signOutUser } = useAuth();
     const navigate = useNavigate();
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+
+    useEffect(() => {
+        const html = document.querySelector('html')
+        html.setAttribute("data-theme", theme)
+        localStorage.setItem("theme", theme)
+    }, [theme])
+
+    const handleTheme = (checked) => {
+        setTheme(checked ? "dark" : "light")
+    }
 
     const handleLogOut = () => {
         signOutUser()
@@ -18,7 +29,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar bg-base-300 shadow-sm px-5">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -39,11 +50,11 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <span className="btn btn-ghost lg:bg-none hidden lg:block">
+                <span className=" lg:bg-none hidden lg:block">
                     <Logo></Logo>
                 </span>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-center">
                 <div className='hidden lg:flex'>
                     <ul className="menu menu-horizontal px-1">
                         <li><NavLink>Home</NavLink></li>
@@ -53,20 +64,48 @@ const Navbar = () => {
                         <li><NavLink>Contact</NavLink></li>
                         {
                             user && <>
-                                <li><NavLink to="/dashboard/my-application">My Applications</NavLink></li>
+                                <li><NavLink to="/dashboard/my-application">Dashboard</NavLink></li>
                             </>
                         }
                     </ul>
                 </div>
+
+
+            </div>
+            <div className="navbar-end flex gap-5">
+                <div>
+                    <input onChange={(e) => handleTheme(e.target.checked)} type="checkbox" defaultChecked={localStorage.getItem('theme') === "dark"} className='toggle' />
+                </div>
                 <div>
                     {
-                        user ? <a onClick={handleLogOut} className="btn">Log Out</a> :
-                            <Link to="/login" className="btn">Login</Link>
+                        user ?
+                            <div className='flex gap-5'>
+                                <div className='dropdown dropdown-end z-50 '>
+                                    <div tabIndex={0} role='button' className='btn btn-ghost btn-circle avatar'>
+                                        <div className='w-20 rounded-full border-2 border-gray-200 '>
+                                            <img alt="Tailwind css navbar component" referrerPolicy='no-referrer' src={user.photoURL || "https://i.ibb.co/tMCRQ5Gk/tanzid.jpg"} />
+                                        </div>
+                                    </div>
+                                    <ul tabIndex={-1} className='menu menu-sm dropdown-content bg-blue-500 w-[200px] space-y-3 rounded-xl'>
+                                        <div className='space-y-3'>
+                                            <li className='text-sm font-bold bg-neutral-200 shadow-amber-100 shadow-2xl py-2 px-3 rounded-xl'>Name: {user.displayName
+                                            }</li>
+                                            <li className='text-xs bg-neutral-200 shadow-amber-100 shadow-2xl py-2 rounded-xl'><strong>Email:</strong>{user.email}</li>
+                                        </div>
+                                        <div>
+                                            <a onClick={handleLogOut} className="btn btn-primary w-full">Sign Out</a>
+                                        </div>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            :
+                            <Link to="/login" className="btn btn-primary">Login</Link>
+
                     }
-                    <Link to="/manager" className='btn btn-primary text-black mx-4'>Manager</Link>
 
                 </div>
-
             </div>
         </div>
     );

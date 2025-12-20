@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { FaMagnifyingGlass, FaTrashCan } from "react-icons/fa6";
@@ -11,6 +11,8 @@ import { Link } from 'react-router';
 
 const MyApplication = () => {
 
+    const applicationModalRef = useRef();
+    const [selectApplication, setSelectApplication] = useState(null);
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const { data: applications = [], refetch } = useQuery({
@@ -52,7 +54,7 @@ const MyApplication = () => {
         });
     }
 
-    const handlePayment = async(application) => {
+    const handlePayment = async (application) => {
         const paymentInfo = {
             cost: application.cost,
             applicationId: application._id,
@@ -62,6 +64,11 @@ const MyApplication = () => {
         const res = await axiosSecure.post('/payment-checkout-session', paymentInfo)
         console.log(res.data.url);
         window.location.assign(res.data.url);
+    }
+
+    const openApplicationModal = (application) => {
+        setSelectApplication(application);
+        applicationModalRef.current.showModal();
     }
 
     return (
@@ -95,7 +102,7 @@ const MyApplication = () => {
                                     <td>{application.cost}</td>
                                     <td>{application.FeeStatus}</td>
                                     <td className='flex gap-2'>
-                                        <button className='btn btn-square hover:bg-amber-300'>
+                                        <button onClick={() => openApplicationModal(application)} className='btn btn-square hover:bg-amber-300'>
                                             <FaMagnifyingGlass />
                                         </button>
                                         {
@@ -109,7 +116,7 @@ const MyApplication = () => {
                                                 <button onClick={() => handlePayment(application)} className='btn btn-square hover:bg-amber-300'>
                                                     <MdPayments />
                                                 </button>
-                                                : <button className='btn btn-square hover:bg-amber-300'>
+                                                : <button onClick={() => openApplicationModal(application)} className='btn btn-square hover:bg-amber-300'>
                                                     <BiCheck />
                                                 </button>
                                         }
@@ -121,6 +128,48 @@ const MyApplication = () => {
                     </tbody>
                 </table>
             </div>
+            <dialog ref={applicationModalRef} className="modal modal-bottom sm:modal-middle ">
+                <div className="modal-box bg-blue-500">
+                    <div className="overflow-x-auto">
+                        <div>
+                            {
+                                selectApplication && (
+                                    <div className='flex flex-col gap-2 '>
+                                        <p className='text-white'><strong className='text-black'>Loan ID: </strong> {selectApplication._id}</p>
+                                        <div className='flex gap-2 text-white'>
+                                            <strong className='text-black'>Borrower Name: </strong >
+                                            <div>{selectApplication.firstName}</div>
+                                            <div>{selectApplication.lastName}</div>
+                                        </div>
+                                        <p className='text-white'><strong className='text-black'>Borrower Email: </strong>{selectApplication.email}</p>
+                                        <p className='text-white'><strong className='text-black'>Transaction ID: </strong>{selectApplication.transactionId}</p>
+                                        <p className='text-white'><strong className='text-black'>Tracking ID: </strong>{selectApplication.trackingId}</p>
+                                        <p className='text-white'><strong className='text-black'>Loan Title: </strong>{selectApplication.loanTitle}</p>
+                                        <p className='text-white'><strong className='text-black'>Loan Amount: </strong>{selectApplication.loanAmount}</p>
+                                        <p className='text-white'><strong className='text-black'>Status: </strong>{selectApplication.Status}</p>
+                                        <p className='text-white'><strong className='text-black'>Interest Rate: </strong>{selectApplication.interestRate}</p>
+                                        <p className='text-white'><strong className='text-black'>Contact Number: </strong>{selectApplication.contactNumber}</p>
+                                        <p className='text-white'><strong className='text-black'>National ID: </strong>{selectApplication.nationalID}</p>
+                                        <p className='text-white'><strong className='text-black'>IncomeSource: </strong>{selectApplication.incomeSource}</p>
+                                        <p className='text-white'><strong className='text-black'>Monthly Income: </strong>{selectApplication.monthlyIncome}</p>
+                                        <p className='text-white'><strong className='text-black'>Address: </strong>{selectApplication.address}</p>
+                                        <p className='text-white'><strong className='text-black'>Extra Note: </strong>{selectApplication.extra}</p>
+
+                                    </div>
+                                )
+                            }
+
+                        </div>
+                    </div>
+
+                    <div className="modal-action">
+                        <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
         </div >
     );
 };

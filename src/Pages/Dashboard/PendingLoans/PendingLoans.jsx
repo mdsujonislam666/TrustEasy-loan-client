@@ -96,7 +96,7 @@ const PendingLoans = () => {
                 </table>
             </div>
             <dialog ref={applicationModalRef} className="modal modal-bottom sm:modal-middle ">
-                <div className="modal-box bg-blue-200">
+                <div className="modal-box bg-blue-500">
                     <div className="overflow-x-auto">
                         <div>
                             {

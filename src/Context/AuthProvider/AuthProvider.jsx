@@ -4,6 +4,8 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 
 import { AuthContext } from '../AuthContext/AuthContext';
 import { auth } from '../../firebase/firebase.init';
+import axios from 'axios';
+
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -11,6 +13,9 @@ const AuthProvider = ({children}) => {
 
     const [user,setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [dbuser, setDbuser] = useState(null);
+
+
 
     const createUser = (email, password) =>{
         setLoading(true);
@@ -43,8 +48,14 @@ const AuthProvider = ({children}) => {
     useEffect(() =>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
             setUser(currentUser);
+            if(currentUser){
+                axios.get(`http://localhost:3000/users/${currentUser.email}`).then(res => setDbuser(res.data))
+            }
+            // setDbuser(res.data)
             setLoading(false);
-            console.log(currentUser);
+
+            // console.log(dbuser);
+            // console.log(res);
         })
         return() =>{
             unsubscribe()
@@ -60,6 +71,7 @@ const AuthProvider = ({children}) => {
         updateUserProfile,
         user,
         loading,
+        dbuser
     }
     if(loading){
         return(

@@ -14,7 +14,7 @@ const AllLoans = () => {
         }
     });
     if (isLoading) {
-        return <span className="loading loading-bars loading-xl"></span>
+        return <span className="loading mx-auto text-6xl flex justify-center items-center loading-bars text-amber-400 loading-xl"></span>
     }
     if (error) {
         return toast.error('Failed to load loans');

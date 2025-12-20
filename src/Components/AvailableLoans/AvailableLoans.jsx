@@ -14,7 +14,7 @@ const AvailableLoans = () => {
         }
     });
     if (isLoading) {
-        return <span className="loading loading-bars loading-xl"></span>
+        return <span className="loading mx-auto text-6xl flex justify-center items-center loading-bars text-amber-400 loading-xl"></span>
     }
     if (error) {
         return toast.error('Failed to load loans');
@@ -26,7 +26,7 @@ const AvailableLoans = () => {
                 <h2 className='text-5xl font-bold text-center'>Choose-<span className='text-red-600'>Your Loans</span></h2>
                 <p className='text-center font-bold text-2xl'>Your smile is our real achievement — and we work every day to reach that goal.</p>
             </div>
-            <div className='grid grid-cols-3 gap-5'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-2'>
                 {
                     availableLoans.map(loan => (
                         <LoanCard key={loan._id} loan={loan}></LoanCard>

@@ -72,7 +72,7 @@ const LoanApplication = () => {
                                 <input type="text" {...register('loanTitle')} className="input"  placeholder="Loan Title" />
 
                                 <label className="label">Interest Rate</label>
-                                <input type="text" {...register('interestRate')} className="input"  placeholder="Interest Rate" />
+                                <input type="number" {...register('interestRate')} className="input"  placeholder="Interest Rate" />
                             </div>
                             <div>
                                 <label className="label">First Name</label>
