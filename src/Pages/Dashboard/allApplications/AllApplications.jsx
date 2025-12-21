@@ -35,7 +35,7 @@ const AllApplications = () => {
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     {/* head */}
-                    <thead>
+                    <thead className='bg-gradient-to-r from-slate-600 text-black via-zinc-400 to-violet-400'>
                         <tr>
                             <th>Serials</th>
                             <th>Name</th>
@@ -63,7 +63,7 @@ const AllApplications = () => {
                                     <p className={`${application.Status === 'Approved' ? 'text-green-500 font-bold': 'text-red-500'}`}>{application.Status}</p>
                                 </td>
                                 <td>
-                                    <button onClick={() => openApplicationModal(application)} className='btn btn-square hover:bg-amber-300'>
+                                    <button onClick={() => openApplicationModal(application)} className='btn btn-square bg-amber-500 hover:bg-amber-300'>
                                         <FaMagnifyingGlass />
                                     </button>
 

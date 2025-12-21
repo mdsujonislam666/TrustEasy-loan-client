@@ -1,17 +1,16 @@
 import React from 'react';
 import useAuth from '../Hooks/useAuth';
 import useUserRole from '../Hooks/useUserRole';
-import { useNavigate } from 'react-router';
+import Forbidden from '../Components/Forbidden/Forbidden';
 
 const AdminRoute = ({children}) => {
     const {loading} = useAuth();
     const {role, roleLoading} = useUserRole();
-    const navigate = useNavigate();
     if(loading || roleLoading){
-        return "this is loading";
+        return <span className="loading loading-bars loading-xl"></span>;
     }
     if(role !== 'Admin'){
-        return navigate('/login');
+        return <Forbidden></Forbidden>;
     }
     return children;
 };

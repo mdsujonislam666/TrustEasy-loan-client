@@ -52,7 +52,7 @@ const Register = () => {
                         axiosSecure.post('/users', usersInfo)
                             .then(res => {
                                 if (res.data.insertedId) {
-                                    console.log('user created in the database');
+                                    toast.success('user created in the database');
                                 }
                             })
 
@@ -72,7 +72,7 @@ const Register = () => {
             })
             .catch(error => {
                 console.log(error);
-                toast.error(error);
+                toast.error('user not created!!');
             })
     }
 
@@ -91,7 +91,7 @@ const Register = () => {
                 axios.post('http://localhost:3000/users', usersInfo)
                     .then(res => {
                         if(res.data.insertedId){
-                            console.log('user saved to DB');
+                            toast.success('user saved to DB');
                         }
                         else{
                             console.log(res.data.message);
@@ -99,11 +99,10 @@ const Register = () => {
                             navigate(location?.state || '/');
                     })
                     .catch(err =>{
-                        console.log('db save error', err);
+                        toast.error('db save error', err);
                     })
             })
             .catch(error => {
-                console.log(error);
                 toast.error(error);
             })
     }

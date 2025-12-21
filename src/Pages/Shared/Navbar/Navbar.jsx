@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Logo from '../../../Components/Logo/Logo';
 import useAuth from '../../../Hooks/useAuth';
-import { Link, NavLink, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import MyLink from '../MyLink/MyLink';
 
 const Navbar = () => {
     const { user, signOutUser } = useAuth();
@@ -38,14 +39,14 @@ const Navbar = () => {
                     <ul
                         tabIndex="-1"
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li><NavLink>Home</NavLink></li>
-                        <li><NavLink to='/loan-application'>Loan-Request</NavLink></li>
-                        <li><NavLink to='/allLoans'>All-Loans</NavLink></li>
-                        <li><NavLink>About Us</NavLink></li>
-                        <li><NavLink>Contact</NavLink></li>
+                        <li><MyLink to='/'>Home</MyLink></li>
+                        <li><MyLink to='/loan-application'>Loan-Request</MyLink></li>
+                        <li><MyLink to='/allLoans'>All-Loans</MyLink></li>
+                        <li><MyLink>About Us</MyLink></li>
+                        <li><MyLink>Contact</MyLink></li>
                         {
                             user && <>
-                                <li><NavLink to="/dashboard/my-application">My Applications</NavLink></li>
+                                <li><MyLink to="/dashboard/my-application">My Applications</MyLink></li>
                             </>
                         }
                     </ul>
@@ -57,14 +58,14 @@ const Navbar = () => {
             <div className="navbar-center">
                 <div className='hidden lg:flex'>
                     <ul className="menu menu-horizontal px-1">
-                        <li><NavLink>Home</NavLink></li>
-                        <li><NavLink to='/loan-application'>Loan-Request</NavLink></li>
-                        <li><NavLink to='/allLoans'>All-Loans</NavLink></li>
-                        <li><NavLink>About Us</NavLink></li>
-                        <li><NavLink>Contact</NavLink></li>
+                        <li><MyLink to='/'>Home</MyLink></li>
+                        <li><MyLink to='/loan-application'>Loan-Request</MyLink></li>
+                        <li><MyLink to='/allLoans'>All-Loans</MyLink></li>
+                        <li><MyLink to='/aboutUs'>About Us</MyLink></li>
+                        <li><MyLink to='contact'>Contact</MyLink></li>
                         {
                             user && <>
-                                <li><NavLink to="/dashboard/my-application">Dashboard</NavLink></li>
+                                <li><MyLink to="/dashboard/my-application">Dashboard</MyLink></li>
                             </>
                         }
                     </ul>
@@ -86,11 +87,11 @@ const Navbar = () => {
                                             <img alt="Tailwind css navbar component" referrerPolicy='no-referrer' src={user.photoURL || "https://i.ibb.co/tMCRQ5Gk/tanzid.jpg"} />
                                         </div>
                                     </div>
-                                    <ul tabIndex={-1} className='menu menu-sm dropdown-content bg-blue-500 w-[200px] space-y-3 rounded-xl'>
+                                    <ul tabIndex={-1} className='menu menu-sm dropdown-content bg-blue-500 w-[250px] space-y-3 rounded-xl'>
                                         <div className='space-y-3'>
-                                            <li className='text-sm font-bold bg-neutral-200 shadow-amber-100 shadow-2xl py-2 px-3 rounded-xl'>Name: {user.displayName
+                                            <li className='text-sm font-bold bg-neutral-200 shadow-amber-100 shadow-2xl text-black py-2 px-3 rounded-xl'>Name: {user.displayName
                                             }</li>
-                                            <li className='text-xs bg-neutral-200 shadow-amber-100 shadow-2xl py-2 rounded-xl'><strong>Email:</strong>{user.email}</li>
+                                            <li className='text-xs text-black bg-neutral-200 shadow-amber-100 shadow-2xl py-2 rounded-xl'><strong>Email:</strong>{user.email}</li>
                                         </div>
                                         <div>
                                             <a onClick={handleLogOut} className="btn btn-primary w-full">Sign Out</a>

@@ -26,6 +26,9 @@ import PendingLoans from "../Pages/Dashboard/PendingLoans/PendingLoans";
 import ApprovedLoans from "../Pages/Dashboard/ApprovedLoans/ApprovedLoans";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 import AdminRoute from "./AdminRoute";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import Contact from "../Pages/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +47,14 @@ export const router = createBrowserRouter([
         path: 'allLoans',
         element: <AllLoans></AllLoans>
       },
+      {
+        path: 'aboutUs',
+        Component: AboutUs
+      },
+      {
+        path: 'contact',
+        Component: Contact
+      }
     ]
   },
   {
@@ -130,5 +141,9 @@ export const router = createBrowserRouter([
         Component: MyProfile
       }
     ]
+  }, 
+  {
+    path: "/*",
+    Component: ErrorPage
   }
 ]);

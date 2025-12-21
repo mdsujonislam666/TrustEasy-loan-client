@@ -30,10 +30,11 @@ const Login = () => {
             .then(result => {
                 console.log(result.user);
                 navigate(location?.state || '/');
+                toast.success('Login successful');
             })
             .catch(error => {
                 console.log(error);
-                toast.error(error);
+                toast.error('user dose not registered please register!!');
             })
 
     }
@@ -52,7 +53,7 @@ const Login = () => {
                 axios.post('http://localhost:3000/users', usersInfo)
                     .then(res => {
                         if (res.data.insertedId) {
-                            console.log('user saved to DB');
+                            toast.success('user saved to DB');
                         }
                         else {
                             console.log(res.data.message);
@@ -60,7 +61,7 @@ const Login = () => {
                         navigate(location?.state || '/');
                     })
                     .catch(err => {
-                        console.log('db save error', err);
+                        toast.error('db save error', err);
                     })
             })
             .catch(error => {

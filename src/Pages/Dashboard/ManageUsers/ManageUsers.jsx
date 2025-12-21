@@ -121,7 +121,7 @@ const ManageUsers = () => {
             <div className="overflow-x-auto">
                 <table className="table table-zebra ">
                     {/* head */}
-                    <thead className='bg-gradient-to-r from-slate-600 via-zinc-400 to-violet-400'>
+                    <thead className='bg-gradient-to-r text-black from-slate-600 via-zinc-400 to-violet-400'>
                         <tr>
                             <th></th>
                             <th>Name</th>
@@ -146,7 +146,7 @@ const ManageUsers = () => {
                                             <button onClick={() => handleMakeAdmin(user)} className='bg-red-500 btn btn-square hover:bg-amber-300'><FaUserLock /></button>
                                     }
                                 </td>
-                                <td>{ user.Status }
+                                <td>{ user.status }
                                 </td>
                                 <td className='flex gap-2'>
                                     <Link to={`/dashboard/userRole-info/${user._id}`} id={user._id} className='btn btn-square hover:bg-amber-300'>

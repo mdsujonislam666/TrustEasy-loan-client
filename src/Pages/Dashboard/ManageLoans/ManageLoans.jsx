@@ -60,7 +60,7 @@ const ManageLoans = () => {
 
     return (
         <div>
-            <div className='py-10 space-y-5'>
+            <div className='py-10 space-y-5 bg-amber-200'>
                 <h2 className='text-5xl font-bold text-center'>Search-<span className='text-red-600'>Your Loans</span></h2>
 
                 <form className='mt-5 flex gap-2 justify-center'>
@@ -86,7 +86,7 @@ const ManageLoans = () => {
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <thead className='bg-green-300 shadow-cyan-500'>
+                    <thead className='bg-gradient-to-r text-black from-slate-600 via-zinc-400 to-violet-400'>
                         <tr>
                             <th>Serial</th>
                             <th>Image</th>

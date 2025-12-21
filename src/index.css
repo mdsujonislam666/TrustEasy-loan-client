@@ -8,9 +8,10 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @plugin "daisyui/theme" {
-  name: "light";
+  name: "#1b1816";
   default: true;
-  --color-primary: #f0e0af;
+  --color-primary: 
+#1778ad;
   --color-secondary: #03373d;
 }
 

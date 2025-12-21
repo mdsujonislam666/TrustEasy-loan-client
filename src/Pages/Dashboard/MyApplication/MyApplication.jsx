@@ -73,12 +73,11 @@ const MyApplication = () => {
 
     return (
         <div>
-            <h1>this is my application: {applications.length}</h1>
 
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     {/* head */}
-                    <thead>
+                    <thead className='bg-gradient-to-r text-black from-slate-600 via-zinc-400 to-violet-400'>
                         <tr>
                             <th></th>
                             <th>Loan ID</th>
