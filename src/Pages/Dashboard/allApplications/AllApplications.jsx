@@ -60,10 +60,17 @@ const AllApplications = () => {
                                 <td>{application.loanTitle}</td>
                                 <td>{application.loanAmount}</td>
                                 <td>
-                                    <p className={`${application.Status === 'Approved' ? 'text-green-500 font-bold': 'text-red-500'}`}>{application.Status}</p>
+                                    <p className={`font-bold ${application.Status === "Approved"
+                                                ? "text-green-500"
+                                                : application.Status === "Rejected"
+                                                    ? "text-red-500"
+                                                    : application.Status === "Pending"
+                                                        ? "text-blue-500"
+                                                        : "text-gray-500"
+                                            }`}>{application.Status}</p>
                                 </td>
                                 <td>
-                                    <button onClick={() => openApplicationModal(application)} className='btn btn-square bg-amber-500 hover:bg-amber-300'>
+                                    <button onClick={() => openApplicationModal(application)} className='btn btn-square bg-green-500 hover:bg-amber-300'>
                                         <FaMagnifyingGlass />
                                     </button>
 
@@ -76,7 +83,7 @@ const AllApplications = () => {
             </div>
 
             <dialog ref={applicationModalRef} className="modal modal-bottom sm:modal-middle ">
-                <div className="modal-box bg-blue-200">
+                <div className="modal-box bg-blue-500">
                     <div className="overflow-x-auto">
                         <div>
                             {

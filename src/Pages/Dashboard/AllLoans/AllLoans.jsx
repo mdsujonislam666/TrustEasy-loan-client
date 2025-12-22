@@ -130,25 +130,25 @@ const AdminAllLoans = () => {
                                 <p>{allLoan.createdBy}</p>
                             </th>
                             <th>
-                                <p>{allLoan.showHome}</p>
+                                <p className={`${allLoan.showHome === "Yes"? "text-green-500 font-bold": "text-red-500 font-semibold"}`}>{allLoan.showHome}</p>
                             </th>
                             <th className='flex gap-2'>
 
                                 {
                                     allLoan.showHome === "Yes" ?
-                                        <button onClick={()=> handleShowHome(allLoan._id, allLoan.showHome)} className='btn btn-square hover:bg-amber-300'>
+                                        <button onClick={()=> handleShowHome(allLoan._id, allLoan.showHome)} className='btn btn-square bg-red-500 hover:bg-amber-300'>
                                             No
                                         </button> :
-                                        <button onClick={()=> handleShowHome(allLoan._id, allLoan.showHome)} className='btn btn-square hover:bg-amber-300'>
+                                        <button onClick={()=> handleShowHome(allLoan._id, allLoan.showHome)} className='btn btn-square bg-green-500 hover:bg-amber-300'>
                                             Yes
                                         </button>
                                 }
 
-                                <button onClick={() => handleLoanDelete(allLoan._id)} className='btn btn-square hover:bg-amber-300'>
+                                <button onClick={() => handleLoanDelete(allLoan._id)} className='btn btn-square hover:bg-amber-300 bg-red-500'>
                                     <FaTrashCan />
                                 </button>
 
-                                <Link to={`/dashboard/update-loans/${allLoan._id}`} className='btn btn-square hover:bg-amber-300'>
+                                <Link to={`/dashboard/update-loans/${allLoan._id}`} className='btn btn-square bg-green-500 hover:bg-amber-300'>
                                     <RxUpdate />
                                 </Link>
                             </th>

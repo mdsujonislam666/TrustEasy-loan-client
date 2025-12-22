@@ -85,7 +85,7 @@ const ManageUsers = () => {
 
     }
 
-    const openApplicationModal = async(user) => {
+    const openApplicationModal = async (user) => {
         const res = await axiosSecure.get(`/suspends/${user._id}`)
         setSelectApplication(res.data);
         applicationModalRef.current.showModal();
@@ -114,7 +114,7 @@ const ManageUsers = () => {
                         </svg>
                         <input onChange={(e) => setSearchText(e.target.value)} name='search' type="search" placeholder="Search" />
                     </label>
-                    <button className='btn btn-primary rounded-full'>Search</button>
+                    <button className='btn bg-gradient-to-r border-none  from-indigo-500 via-purple-300 to-pink-400 rounded-full'>Search</button>
                 </form>
             </div>
 
@@ -138,7 +138,18 @@ const ManageUsers = () => {
                                 <th>{index + 1}</th>
                                 <td>{user.displayName}</td>
                                 <td>{user.email}</td>
-                                <td>{user.role}</td>
+                                <td>
+                                    <p
+                                        className={`font-bold ${user.role === "Admin"
+                                                ? "text-green-500"
+                                                : user.role === "Manager"
+                                                    ? "text-yellow-500"
+                                                    : user.role === "Borrower"
+                                                        ? "text-blue-500"
+                                                        : "text-gray-500"
+                                            }`}
+                                    >{user.role}</p>
+                                </td>
 
                                 <td>
                                     {
@@ -146,14 +157,14 @@ const ManageUsers = () => {
                                             <button onClick={() => handleMakeAdmin(user)} className='bg-red-500 btn btn-square hover:bg-amber-300'><FaUserLock /></button>
                                     }
                                 </td>
-                                <td>{ user.status }
+                                <td><p className={`${user.status === "Approved" ? "text-green-600 font-bold" : "text-red-500 font-bold"}`}>{user.status}</p>
                                 </td>
                                 <td className='flex gap-2'>
-                                    <Link to={`/dashboard/userRole-info/${user._id}`} id={user._id} className='btn btn-square hover:bg-amber-300'>
+                                    <Link to={`/dashboard/userRole-info/${user._id}`} id={user._id} className='btn btn-square bg-green-500 hover:bg-amber-300'>
                                         <RxUpdate />
                                     </Link>
                                     {
-                                        user.status === "suspend" && <button onClick={() => openApplicationModal(user)} className='btn  hover:bg-amber-300'>Reason</button>
+                                        user.status === "suspend" && <button onClick={() => openApplicationModal(user)} className='btn  bg-gradient-to-r from-indigo-500 via-purple-300 to-pink-400 text-black'>Reason</button>
                                     }
                                 </td>
                             </tr>)
@@ -172,9 +183,9 @@ const ManageUsers = () => {
                                     <div className="modal-box mx-auto inset-shadow-sm inset-shadow-indigo-500/50 bg-gradient-to-r from-indigo-500 via-sky-300 to-violet-500">
                                         <p className="py-4 text-xl font-bold text-center">Your Suspend Reasons</p>
 
-                                        <p className='text-gray-700'><strong className='text-black'>Suspend Reason: </strong>{selectApplication.suspendReason }</p>
+                                        <p className='text-gray-700'><strong className='text-black'>Suspend Reason: </strong>{selectApplication.suspendReason}</p>
 
-                                        <p className='text-gray-700'><strong className='text-black'>Suspend Feedback: </strong>{selectApplication.suspendFeedback }</p>
+                                        <p className='text-gray-700'><strong className='text-black'>Suspend Feedback: </strong>{selectApplication.suspendFeedback}</p>
                                     </div>
                                 )
                             }

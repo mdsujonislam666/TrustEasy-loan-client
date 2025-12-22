@@ -86,8 +86,8 @@ const UserRoleInfo = () => {
                     <h2 className="card-title"><strong>Role</strong>{users.role}</h2>
                     <p><strong>Email: </strong>{users.email}</p>
                     <div className="card-actions flex gap-5">
-                        <button onClick={() => handleApprovedData(users._id)} className="btn">Approve</button>
-                        <button onClick={() => openApplicationModal(users)} className="btn">Suspend</button>
+                        <button onClick={() => handleApprovedData(users._id)} className="btn bg-gradient-to-r from-indigo-500 via-purple-300 to-pink-400  text-black">Approve</button>
+                        <button onClick={() => openApplicationModal(users)} className="btn bg-gradient-to-r from-indigo-500 via-purple-300 to-pink-400 text-black">Suspend</button>
                     </div>
                 </div>
             </div>

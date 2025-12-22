@@ -1,16 +1,57 @@
-# React + Vite
+Website Name: TrustEasy Loan
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+*** "আমাদের ওয়েবসাইটের মূল লক্ষ্য হলো সাধারণ মানুষের আর্থিক সংকট দূর করে তাদের স্বাবলম্বী করে তোলা। আমরা বিশ্বাস করি, সঠিক সময়ে সঠিক পরিমাণ আর্থিক সহায়তা একজন মানুষের জীবন বদলে দিতে পারে।
 
-Currently, two official plugins are available:
+কেন আমাদের বেছে নেবেন?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+বিচিত্র সব লোন: আপনার শিক্ষা, ব্যবসা, জরুরি চিকিৎসা কিংবা ব্যক্তিগত—যেকোনো প্রয়োজনে আমাদের এখানে রয়েছে বিভিন্ন ধরণের ঋণের ব্যবস্থা।
 
-## React Compiler
+স্বল্প সুদের হার: আমরা সাধারণ মানুষের সামর্থ্যের কথা চিন্তা করে অত্যন্ত অল্প সুদে (Low Interest) লোন প্রদান করি, যাতে কিস্তি পরিশোধ আপনার জন্য সহজ হয়।
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+সহজ প্রক্রিয়া: জটিলতা এড়িয়ে দ্রুততম সময়ে আপনার অর্থের প্রয়োজন মেটানোই আমাদের উদ্দেশ্য।
 
-## Expanding the ESLint configuration
+আমাদের এই ক্ষুদ্র প্রয়াস আপনার দৈনন্দিন জীবনের আর্থিক চাহিদা মিটিয়ে আপনাকে আপনার জীবনের চূড়ান্ত লক্ষ্যের দিকে আত্মবিশ্বাসের সাথে এগিয়ে যেতে সাহায্য করবে। আপনার প্রতিটি পদক্ষেপে আমরা হতে চাই আপনার বিশ্বস্ত সঙ্গী।"
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+*** প্রক্রিয়া:
+
+1. User:
+
+ প্রথমে একজন ব্যবহারকারী আমাদের ওয়েবসাইটে রেজিস্ট্রেশন করে লগইন করবে। রেজিস্ট্রেশনের পর অ্যাডমিন ওই ব্যবহারকারীকে Approved অথবা Suspended করতে পারবে। যদি ব্যবহারকারী Approved হয়, তাহলে সে লোনের জন্য আবেদন করতে পারবে এবং ড্যাশবোর্ড ব্যবহার করতে পারবে। কিন্তু যদি ব্যবহারকারী Suspended হয়, তাহলে সে কোনো লোনের জন্য আবেদন করতে পারবে না এবং ড্যাশবোর্ডেও প্রবেশ করতে পারবে না।
+
+ব্যবহারকারী লোনের জন্য আবেদন করার পর সেই আবেদনটি ব্যবহারকারীর My Applications সেকশনে সংরক্ষিত হবে এবং একই সঙ্গে ম্যানেজারের Pending Loans সেকশনে জমা হবে। এরপর ম্যানেজার সেই Pending Loans থেকে আবেদনটি যাচাই করে Approved অথবা Rejected করার সিদ্ধান্ত নিতে পারবে।
+
+
+2. Manager: 
+
+ম্যানেজার ড্যাশবোর্ডে মোট ৫টি ক্যাটাগরি থাকবে:
+
+*Add Loans
+এই অপশনের মাধ্যমে ম্যানেজার ওয়েবসাইটে বিভিন্ন ক্যাটাগরির লোন যোগ করতে পারবে এবং প্রয়োজন অনুযায়ী সেগুলো আপডেট করতে পারবে।
+
+*Manage Loans
+এখানে ম্যানেজার তার নিজের যোগ করা সব লোন দেখতে পারবে। পাশাপাশি লোনগুলোর তথ্য আপডেট করা এবং প্রয়োজন হলে ডিলিট করার সুবিধাও থাকবে।
+
+*Pending Loans
+এই সেকশনে ব্যবহারকারীদের সকল পেন্ডিং লোন আবেদন দেখা যাবে। ম্যানেজার এসব আবেদন যাচাই করে Approve অথবা Reject করতে পারবে।
+
+*Approved Applications
+এখানে ম্যানেজার যেসব লোন আবেদন অনুমোদন (Approved) করেছে, সেগুলোর তালিকা টেবিল আকারে দেখতে পারবে।
+
+*My Profile
+এই সেকশনে ম্যানেজার তার নিজের প্রোফাইল সংক্রান্ত সকল তথ্য দেখতে পারবে।
+
+
+3. Admin:
+
+অ্যাডমিন ড্যাশবোর্ডে মোট ৩টি ক্যাটাগরি থাকবে:
+
+*Manage Users
+এই সেকশনে অ্যাডমিন যেকোনো User অথবা Manager-কে Approved অথবা Suspended করতে পারবে। কোনো ব্যবহারকারীকে সাসপেন্ড করার সময় অ্যাডমিন সাসপেন্ড করার কারণ উল্লেখ করতে পারবে, যাতে ব্যবহারকারী জানতে পারে সে কেন সাসপেন্ড হয়েছে। একই সঙ্গে অ্যাডমিন নিজেও পরবর্তীতে দেখতে পারবে কোন কারণে ওই ব্যবহারকারীকে সাসপেন্ড করা হয়েছিল।
+
+*All Loans
+এই সেকশনে অ্যাডমিন ওয়েবসাইটে যোগ করা সব ধরনের লোন দেখতে পারবে। অ্যাডমিন এসব লোনের তথ্য Update করতে পারবে এবং প্রয়োজন হলে Delete করতে পারবে। পাশাপাশি অ্যাডমিন নির্ধারণ করতে পারবে কোন কোন লোন ব্যবহারকারীর Home Page-এর Available Loans সেকশনে প্রদর্শিত হবে।
+
+*All Applications
+এই সেকশনে অ্যাডমিন ব্যবহারকারীদের করা সকল লোন আবেদন দেখতে পারবে। পাশাপাশি প্রতিটি আবেদনের সঙ্গে সংশ্লিষ্ট ব্যবহারকারীর সকল প্রয়োজনীয় তথ্য (যেমন: নাম, ইমেইল, রোল, আবেদন স্ট্যাটাস ইত্যাদি) বিস্তারিতভাবে দেখতে পারবে।
+
