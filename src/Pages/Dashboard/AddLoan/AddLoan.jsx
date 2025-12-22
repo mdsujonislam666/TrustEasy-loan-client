@@ -69,11 +69,14 @@ const AddLoan = () => {
     }
 
     return (
-        <div className='flex flex-col items-center'>
-            <h2 className='text-5xl font-bold'>Loan Application</h2>
+        <div className='flex flex-col items-center bg-amber-200'>
+            <div className='flex flex-col text-black items-center py-5 text-center lg:w-[400px]'>
+                <h2 className='text-5xl text-white font-bold py-5'>Add-<span className='text-red-500'>Loan</span></h2>
+                <p>Your decisions shape the customer’s future. Add new loans responsibly and ensure reliable, trustworthy service.</p>
+            </div>
             <form onSubmit={handleSubmit(handleLoans)}>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl bg-gradient-to-r from-indigo-500 via-purple-300 to-pink-400 text-white">
-                    <div className="card-body">
+                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl bg-gradient-to-r from-indigo-500 via-purple-300 to-pink-400 text-white ">
+                    <div className="card-body text-blue-700">
                         <fieldset className="fieldset">
                             <div>
 

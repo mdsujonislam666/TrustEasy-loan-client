@@ -8,7 +8,7 @@ import { FaBangladeshiTakaSign } from 'react-icons/fa6';
 import useUserRole from '../../../Hooks/useUserRole';
 
 const LoanDetails = () => {
-    const {role} = useUserRole();
+    const { role } = useUserRole();
     console.log(role);
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
@@ -38,20 +38,23 @@ const LoanDetails = () => {
                     </figure>
                 </div>
                 <div className="card-body space-y-3">
-                    <h2 className="card-title text-2xl font-bold">{loanDetails.loanTitle}</h2>
+                    <h2 className="card-title text-2xl text-gray-600 font-bold"><strong className='text-black'>LoanTitle: </strong>{loanDetails.loanTitle}</h2>
                     <div className='bg-white px-2 py-3 rounded-xl shadow-lg shadow-white-500/50'>
-                        <p className='text-gray-600 '>{loanDetails.description}</p>
+                        <p className='text-gray-600 '><strong className='text-black'>Description:</strong> {loanDetails.description}</p>
                     </div>
 
-                    <h1 className='font-bold flex items-center '>BTD: <span className='text-red-500'><FaBangladeshiTakaSign size={15} /></span><span className='text-blue-600'>{loanDetails.interestRate}</span></h1>
+                    <div className='flex justify-between'>
+                        <div className='font-bold flex items-center '><strong>InterestRate: </strong><span className='text-blue-600'>{loanDetails.interestRate}</span></div>
+                        <div className='font-bold flex items-center '><strong>Category: </strong><span className='text-blue-600'>{loanDetails.category}</span></div>
+                    </div>
                     <div className='flex justify-between bg-white py-3 rounded-xl px-2 shadow-lg shadow-white-500/50'>
-                        <h3 className='font-bold text-indigo-600'>{loanDetails.loanLimit}</h3>
+                        <h3 className='font-bold text-indigo-600'><strong className='text-black'>LoanLimit: </strong>{loanDetails.loanLimit}</h3>
                     </div>
                     <div className="card-actions">
                         {
                             role === "Borrower" && <Link to="/loan-application" state={loanDetails} className="btn bg-gradient-to-r from-indigo-500 via-sky-300 to-violet-500 w-full">Apply Now Button</Link>
                         }
-                        
+
                     </div>
                 </div>
 

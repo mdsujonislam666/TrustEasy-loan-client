@@ -101,21 +101,21 @@ const MyApplication = () => {
                                     <td>{application.cost}</td>
                                     <td>{application.FeeStatus}</td>
                                     <td className='flex gap-2'>
-                                        <button onClick={() => openApplicationModal(application)} className='btn btn-square hover:bg-amber-300'>
+                                        <button onClick={() => openApplicationModal(application)} className='btn btn-square bg-blue-500 hover:bg-amber-300'>
                                             <FaMagnifyingGlass />
                                         </button>
                                         {
-                                            application.Status === 'Pending' ? <button onClick={() => handleApplicationDelete(application._id)} className='btn btn-square hover:bg-amber-300'>
+                                            application.Status === 'Pending' ? <button onClick={() => handleApplicationDelete(application._id)} className='btn btn-square bg-red-500 hover:bg-amber-300'>
                                                 <FaTrashCan />
                                             </button> : ""
                                         }
                                         {
                                             application.FeeStatus === 'unpaid' ?
 
-                                                <button onClick={() => handlePayment(application)} className='btn btn-square hover:bg-amber-300'>
+                                                <button onClick={() => handlePayment(application)} className='btn btn-square bg-blue-500 hover:bg-amber-300'>
                                                     <MdPayments />
                                                 </button>
-                                                : <button onClick={() => openApplicationModal(application)} className='btn btn-square hover:bg-amber-300'>
+                                                : <button onClick={() => openApplicationModal(application)} className='btn btn-square bg-green-500 hover:bg-amber-300'>
                                                     <BiCheck />
                                                 </button>
                                         }

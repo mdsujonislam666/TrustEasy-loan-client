@@ -3,9 +3,11 @@ import Logo from '../../../Components/Logo/Logo';
 import useAuth from '../../../Hooks/useAuth';
 import { Link, useNavigate } from 'react-router';
 import MyLink from '../MyLink/MyLink';
+import useUserRole from '../../../Hooks/useUserRole';
 
 const Navbar = () => {
     const { user, signOutUser } = useAuth();
+    const { role } = useUserRole();
     const navigate = useNavigate();
     const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
 
@@ -40,10 +42,12 @@ const Navbar = () => {
                         tabIndex="-1"
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                         <li><MyLink to='/'>Home</MyLink></li>
-                        <li><MyLink to='/loan-application'>Loan-Request</MyLink></li>
+                        {
+                            role === "Borrower" && <li><MyLink to='/loan-application'>Loan-Request</MyLink></li>
+                        }
                         <li><MyLink to='/allLoans'>All-Loans</MyLink></li>
-                        <li><MyLink>About Us</MyLink></li>
-                        <li><MyLink>Contact</MyLink></li>
+                        <li><MyLink to="/aboutUs">About Us</MyLink></li>
+                        <li><MyLink to="/contact">Contact</MyLink></li>
                         {
                             user && <>
                                 <li><MyLink to="/dashboard/my-application">My Applications</MyLink></li>
@@ -59,10 +63,12 @@ const Navbar = () => {
                 <div className='hidden lg:flex'>
                     <ul className="menu menu-horizontal px-1">
                         <li><MyLink to='/'>Home</MyLink></li>
-                        <li><MyLink to='/loan-application'>Loan-Request</MyLink></li>
+                        {
+                            role === "Borrower" && <li><MyLink to='/loan-application'>Loan-Request</MyLink></li>
+                        }
                         <li><MyLink to='/allLoans'>All-Loans</MyLink></li>
                         <li><MyLink to='/aboutUs'>About Us</MyLink></li>
-                        <li><MyLink to='contact'>Contact</MyLink></li>
+                        <li><MyLink to='/contact'>Contact</MyLink></li>
                         {
                             user && <>
                                 <li><MyLink to="/dashboard/dashboardHome">Dashboard</MyLink></li>

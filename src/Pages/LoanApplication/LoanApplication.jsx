@@ -56,12 +56,14 @@ const LoanApplication = () => {
         });
     }
     return (
-        <div className='flex flex-col items-center'>
-            <h2 className='text-5xl font-bold'>Loan Application</h2>
-            <p></p>
+        <div className='flex flex-col items-center bg-amber-200 pb-5'>
+            <div className='flex flex-col text-black items-center py-5 text-center lg:w-[400px]'>
+                <h2 className='text-5xl text-white font-bold py-5'>Add-<span className='text-red-500'>Loan</span></h2>
+                <p>Your decisions shape the customer’s future. Add new loans responsibly and ensure reliable, trustworthy service.</p>
+            </div>
             <form onSubmit={handleSubmit(handleLoanApplication)}>
                 <div className="card bg-gradient-to-r from-indigo-500 via-purple-300 to-pink-400 text-white w-full max-w-sm shrink-0 shadow-2xl">
-                    <div className="card-body">
+                    <div className="card-body text-blue-500">
                         <fieldset className="fieldset">
                             <div>
                                 <label className="label font-bold text-white text-sm">Email</label>
@@ -69,16 +71,16 @@ const LoanApplication = () => {
                                     defaultValue={user?.email} className="input" placeholder="Email" readOnly />
 
                                 <label className="label font-bold text-white text-sm">Loan Title</label>
-                                <input type="text" {...register('loanTitle')} className="input"  placeholder="Loan Title" />
+                                <input type="text" {...register('loanTitle')} className="input" placeholder="Loan Title" />
 
                                 <label className="label font-bold text-white text-sm">Interest Rate</label>
-                                <input type="number" {...register('interestRate')} className="input"  placeholder="Interest Rate" />
+                                <input type="number" {...register('interestRate')} className="input" placeholder="Interest Rate" />
                             </div>
                             <div>
                                 <label className="label font-bold text-white text-sm">First Name</label>
                                 <input type="text" {...register('firstName', { required: true })} className="input" placeholder="First Name" />
 
-                                <label className="label">Last Name</label>
+                                <label className="label text-white text-sm">Last Name</label>
                                 <input type="text" {...register('lastName', { required: true })} className="input" placeholder="Last Name" />
 
                                 <label className="label font-bold text-white text-sm">Contact Number</label>

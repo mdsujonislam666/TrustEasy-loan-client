@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import { FaFileInvoiceDollar } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
@@ -18,6 +18,13 @@ import logo from '../assets/logo2 (2).png'
 
 const DashboardLayout = () => {
     const { role } = useUserRole();
+    const [theme] = useState(localStorage.getItem('theme') || "light")
+
+    useEffect(() => {
+        const html = document.querySelector('html')
+        html.setAttribute("data-theme", theme)
+        localStorage.setItem("theme", theme)
+    }, [theme])
     return (
         <div className="drawer lg:drawer-open max-w-7xl mx-auto">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -52,7 +59,7 @@ const DashboardLayout = () => {
                         <li>
                             <DashboardNavLink
                                 to="/dashboard/dashboardHome"
-                                icon={IoHome }
+                                icon={IoHome}
                                 label="Dashboard Home"
                                 tip="Dashboard Home"
                             />
