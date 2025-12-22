@@ -119,10 +119,10 @@ const ManageLoans = () => {
                                 <td>{managerLoan.interestRate}</td>
                                 <td>{managerLoan.category}</td>
                                 <th>
-                                    <button onClick={() => handleApplicationDelete(managerLoan._id)} className='btn btn-square hover:bg-amber-300'>
+                                    <button onClick={() => handleApplicationDelete(managerLoan._id)} className='btn btn-square bg-red-500 hover:bg-amber-300'>
                                         <FaTrashCan />
                                     </button>
-                                    <Link to={`/dashboard/update-loan/${managerLoan._id}`} className='btn btn-square mx-2 hover:bg-amber-300'>
+                                    <Link to={`/dashboard/update-loan/${managerLoan._id}`} className='btn btn-square mx-2 bg-green-500 hover:bg-amber-300'>
                                         <RxUpdate />
                                     </Link>
                                 </th>

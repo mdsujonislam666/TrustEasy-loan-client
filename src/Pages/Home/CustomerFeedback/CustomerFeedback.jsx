@@ -72,7 +72,7 @@ const CustomerFeedback = () => {
                             </div>
                             <div>
                                 <h2 className='font-semibold text-lg'>Md Sujon Islam</h2>
-                                <p className='text-sm text-gray-500'>this loan is very helpfull</p>
+                                <p className='text-sm text-gray-500'>Fast approval, transparent terms, and helpful support made the loan process simple and stress free</p>
                             </div>
                         </div>
 
@@ -87,9 +87,9 @@ const CustomerFeedback = () => {
                                 <div className="rating w-20 lg:w-40">
                                     <div className="mask mask-star" aria-label="1 star"></div>
                                     <div className="mask mask-star" aria-label="2 star"></div>
-                                    <div className="mask mask-star" aria-label="3 star" aria-current="true"></div>
+                                    <div className="mask mask-star" aria-label="3 star"></div>
                                     <div className="mask mask-star" aria-label="4 star"></div>
-                                    <div className="mask mask-star" aria-label="5 star"></div>
+                                    <div className="mask mask-star" aria-label="5 star" aria-current="true"></div>
                                 </div>
                             </div>
 
@@ -109,8 +109,9 @@ const CustomerFeedback = () => {
                                 <img className='w-20 h-20 rounded-full' src={userProfile2} alt="" />
                             </div>
                             <div>
-                                <h2 className='font-semibold text-lg'>Md Sujon Islam</h2>
-                                <p className='text-sm text-gray-500'>this loan is very helpfull</p>
+                                <h2 className='font-semibold text-lg'>Md Fahim Ali
+                                </h2>
+                                <p className='text-sm text-gray-500'>Very smooth experience with clear communication and timely updates throughout my entire loan journey.</p>
                             </div>
                         </div>
 
@@ -125,8 +126,8 @@ const CustomerFeedback = () => {
                                 <div className="rating w-20 lg:w-40">
                                     <div className="mask mask-star" aria-label="1 star"></div>
                                     <div className="mask mask-star" aria-label="2 star"></div>
-                                    <div className="mask mask-star" aria-label="3 star" aria-current="true"></div>
-                                    <div className="mask mask-star" aria-label="4 star"></div>
+                                    <div className="mask mask-star" aria-label="3 star"></div>
+                                    <div className="mask mask-star" aria-label="4 star" aria-current="true"></div>
                                     <div className="mask mask-star" aria-label="5 star"></div>
                                 </div>
                             </div>
@@ -147,8 +148,8 @@ const CustomerFeedback = () => {
                                 <img className='w-20 h-20 rounded-full' src={userProfile3} alt="" />
                             </div>
                             <div>
-                                <h2 className='font-semibold text-lg'>Md Sujon Islam</h2>
-                                <p className='text-sm text-gray-500'>this loan is very helpfull</p>
+                                <h2 className='font-semibold text-lg'>Md Nahid Islam</h2>
+                                <p className='text-sm text-gray-500'>Trusted platform with honest policies, quick responses, and excellent customer support at every step.</p>
                             </div>
                         </div>
 
@@ -163,9 +164,9 @@ const CustomerFeedback = () => {
                                 <div className="rating w-20 lg:w-40">
                                     <div className="mask mask-star" aria-label="1 star"></div>
                                     <div className="mask mask-star" aria-label="2 star"></div>
-                                    <div className="mask mask-star" aria-label="3 star" aria-current="true"></div>
+                                    <div className="mask mask-star" aria-label="3 star"></div>
                                     <div className="mask mask-star" aria-label="4 star"></div>
-                                    <div className="mask mask-star" aria-label="5 star"></div>
+                                    <div className="mask mask-star" aria-label="5 star" aria-current="true"></div>
                                 </div>
                             </div>
 
@@ -185,8 +186,9 @@ const CustomerFeedback = () => {
                                 <img className='w-20 h-20 rounded-full' src={userProfile4} alt="" />
                             </div>
                             <div>
-                                <h2 className='font-semibold text-lg'>Md Sujon Islam</h2>
-                                <p className='text-sm text-gray-500'>this loan is very helpfull</p>
+                                <h2 className='font-semibold text-lg'>Md Shakh Sadi
+                                </h2>
+                                <p className='text-sm text-gray-500'>Easy application, fair conditions, and fast approval helped me achieve my financial goals confidently.</p>
                             </div>
                         </div>
 
@@ -201,8 +203,8 @@ const CustomerFeedback = () => {
                                 <div className="rating w-20 lg:w-40">
                                     <div className="mask mask-star" aria-label="1 star"></div>
                                     <div className="mask mask-star" aria-label="2 star"></div>
-                                    <div className="mask mask-star" aria-label="3 star" aria-current="true"></div>
-                                    <div className="mask mask-star" aria-label="4 star"></div>
+                                    <div className="mask mask-star" aria-label="3 star"></div>
+                                    <div className="mask mask-star" aria-label="4 star" aria-current="true"></div>
                                     <div className="mask mask-star" aria-label="5 star"></div>
                                 </div>
                             </div>
@@ -223,8 +225,8 @@ const CustomerFeedback = () => {
                                 <img className='w-20 h-20 rounded-full' src={userProfile5} alt="" />
                             </div>
                             <div>
-                                <h2 className='font-semibold text-lg'>Md Sujon Islam</h2>
-                                <p className='text-sm text-gray-500'>this loan is very helpfull</p>
+                                <h2 className='font-semibold text-lg'>Md Obaidullah</h2>
+                                <p className='text-sm text-gray-500'>Professional service, reliable guidance, and hassle free loan processing exceeded my expectations completely.</p>
                             </div>
                         </div>
 

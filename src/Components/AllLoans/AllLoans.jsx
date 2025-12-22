@@ -21,8 +21,14 @@ const AllLoans = () => {
     }
     return (
         <div>
-            <h1>available loan: {allLoans.length}</h1>
-            <div className='grid grid-cols-3 gap-5'>
+            <div className='text-center py-10 lg:w-[600px] flex flex-col mx-auto py10 space-y-3'>
+                <h2 className='text-5xl font-bold text-center'>All-<span className='text-red-600'>Loans</span></h2>
+                <p>
+                    Take a step closer to achieving your dreams—apply today for the loan you need through a simple process, transparent terms, and trusted services.
+                </p>
+
+            </div>
+            <div className='grid mx-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
                     allLoans.map(loan => (
                         <LoanCard key={loan._id} loan={loan}></LoanCard>

@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "trusteasy-loan",
+    "prod": "trusteasy-loan"
+  },
+  "targets": {},
+  "etags": {}
+}

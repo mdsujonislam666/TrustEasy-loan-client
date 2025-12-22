@@ -29,6 +29,7 @@ import AdminRoute from "./AdminRoute";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import Contact from "../Pages/Contact/Contact";
+import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -136,9 +137,14 @@ export const router = createBrowserRouter([
       {
         path: 'approvedLoans',
         Component: ApprovedLoans
-      }, {
+      }, 
+      {
         path: "myProfile",
         Component: MyProfile
+      },
+      {
+        path: "dashboardHome",
+        Component: DashboardHome
       }
     ]
   }, 

@@ -72,28 +72,28 @@ const AddLoan = () => {
         <div className='flex flex-col items-center'>
             <h2 className='text-5xl font-bold'>Loan Application</h2>
             <form onSubmit={handleSubmit(handleLoans)}>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl bg-gradient-to-r from-indigo-500 via-purple-300 to-pink-400 text-white">
                     <div className="card-body">
                         <fieldset className="fieldset">
                             <div>
 
-                                <label className="label">Loan Title</label>
+                                <label className="label font-bold text-white text-sm">Loan Title</label>
                                 <input type="text" {...register('loanTitle')} className="input" placeholder="Loan Title" />
 
-                                <label className="label">Interest Rate</label>
+                                <label className="label font-bold text-white text-sm">Interest Rate</label>
                                 <input type="text" {...register('interestRate')} className="input" placeholder="Interest Rate" />
 
-                                <label className="label">Category</label>
+                                <label className="label font-bold text-white text-sm">Category</label>
                                 <input type="text" {...register('category')} className="input" placeholder="Category" />
 
-                                <label className="label">Max Loan Limit</label>
+                                <label className="label font-bold text-white text-sm">Max Loan Limit</label>
                                 <input type="number" {...register('loanLimit', { required: true })} className="input" placeholder="Max Loan Limit" />
 
-                                <label className="label">Required Documents</label>
+                                <label className="label font-bold text-white text-sm">Required Documents</label>
                                 <input type="text" {...register('documents', { required: true })} className="input" placeholder="Required Documents" />
 
 
-                                <label className="label text-gray-800">EMI Plans</label>
+                                <label className="label font-bold text-white text-sm">EMI Plans</label>
                                 <select {...register('emiPlans')} className="select" defaultValue="Select plans">
                                     <option disabled={true}>Select Plans</option>
                                     <option>6 Months</option>
@@ -102,7 +102,7 @@ const AddLoan = () => {
                                     
                                 </select>
 
-                                <label className="label text-gray-800">Show On Home</label>
+                                <label className="label font-bold text-white text-sm">Show On Home</label>
                                 <select {...register('showHome')} className="select" defaultValue="Select plans">
                                     <option disabled={true}>Select Plans</option>
                                     <option>Yes</option>
@@ -110,10 +110,10 @@ const AddLoan = () => {
                                 </select>
 
                                 {/* photo image field */}
-                                <label className="label text-gray-800">Photo</label>
+                                <label className="label font-bold text-white text-sm">Photo</label>
                                 <input type="file" {...register('photo', { required: true })} className="file-input" placeholder="Your Photo" />
 
-                                <label className="label mt-4">Description</label>
+                                <label className="label mt-4 font-bold text-white text-sm">Description</label>
                                 <textarea name="textArea" className="input h-24 w-full" {...register('description')} id=""></textarea>
 
                                 <input type="submit" className='btn btn-primary w-full mt-2 text-black' value="Add Loan" />

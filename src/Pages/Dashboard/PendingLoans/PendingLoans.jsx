@@ -79,13 +79,13 @@ const PendingLoans = () => {
                                 <td>{pendingLoan.loanAmount}</td>
                                 <td>{new Date(pendingLoan.createdAt).toLocaleDateString()}</td>
                                 <td className='flex gap-2'>
-                                    <button onClick={() => handleApproved(pendingLoan._id)} className='btn hover:bg-amber-300'>
+                                    <button onClick={() => handleApproved(pendingLoan._id)} className='btn bg-green-500 hover:bg-amber-300'>
                                         Approved
                                     </button>
-                                    <button onClick={() => handleReject(pendingLoan._id)} className='btn hover:bg-red-400 hover:text-white'>
+                                    <button onClick={() => handleReject(pendingLoan._id)} className='btn hover:bg-red-400 bg-red-500 hover:text-white'>
                                         Rejected
                                     </button>
-                                    <button onClick={() => openApplicationModal(pendingLoan)} className='btn btn-square hover:bg-amber-300'>
+                                    <button onClick={() => openApplicationModal(pendingLoan)} className='btn btn-square bg-amber-500 hover:bg-amber-300'>
                                         <FaMagnifyingGlass />
                                     </button>
                                 </td>

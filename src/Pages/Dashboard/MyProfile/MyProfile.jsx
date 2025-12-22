@@ -30,7 +30,7 @@ const MyProfile = () => {
     }
 
     return (
-        <div className='card-body items-center p-5 m-5 mb-5 bg-amber-200 rounded-xl'>
+        <div className='card-body items-center p-5 m-5 mb-5 bg-amber-300 text-black rounded-xl'>
             <h1 className='text-2xl font-bold'>My Profile</h1>
             <div>
                 <img className='w-40 h-40 rounded-full' src={users.photoURL} alt="" />
@@ -38,7 +38,7 @@ const MyProfile = () => {
             <p className='font-bold'><strong>Name: </strong> <span>{users.displayName}</span></p>
             <p className='font-bold'><strong>Role: </strong> <span>{users.role}</span></p>
             <p className='font-bold'><strong>Email: </strong><span>{users.email}</span></p>
-            <a onClick={handleLogOut} className="btn">Log Out</a>
+            <a onClick={handleLogOut} className="btn border-none bg-gradient-to-r from-indigo-500 via-purple-300 to-pink-400 text-black">Log Out</a>
         </div>
     );
 };

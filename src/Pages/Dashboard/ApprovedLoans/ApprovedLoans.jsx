@@ -83,10 +83,10 @@ const ApprovedLoans = () => {
                                 <td>{approvedLoan.loanAmount}</td>
                                 <td>{new Date(approvedLoan.createdAt).toLocaleDateString()}</td>
                                 <td className='flex gap-2'>
-                                    <button onClick={() => handleApproveLoanDelete(approvedLoan._id)} className='btn btn-square hover:bg-amber-300'>
+                                    <button onClick={() => handleApproveLoanDelete(approvedLoan._id)} className='btn btn-square bg-red-500 hover:bg-amber-300'>
                                         <FaTrashCan />
                                     </button>
-                                    <button onClick={() => openApprovedLoanModal(approvedLoan)} className='btn btn-square hover:bg-amber-300'>
+                                    <button onClick={() => openApprovedLoanModal(approvedLoan)} className='btn btn-square bg-amber-500 hover:bg-amber-300'>
                                         <FaMagnifyingGlass />
                                     </button>
                                 </td>
@@ -97,7 +97,7 @@ const ApprovedLoans = () => {
                 </table>
             </div>
             <dialog ref={applicationModalRef} className="modal modal-bottom sm:modal-middle ">
-                <div className="modal-box bg-blue-200">
+                <div className="modal-box bg-blue-500">
                     <div className="overflow-x-auto">
                         <div>
                             {

@@ -50,7 +50,7 @@ const Login = () => {
                     displayName: result.user.displayName,
                     photoURL: result.user.photoURL,
                 }
-                axios.post('http://localhost:3000/users', usersInfo)
+                axios.post('https://trusteasy-loan.vercel.app/users', usersInfo)
                     .then(res => {
                         if (res.data.insertedId) {
                             toast.success('user saved to DB');
@@ -93,7 +93,7 @@ const Login = () => {
             <form onSubmit={handleSubmit(handleLogin)} className="card-body">
                 <fieldset className="fieldset">
                     {/* email field */}
-                    <label className="label text-gray-800">Email</label>
+                    <label className="label text-white">Email</label>
                     <input type="email" {...register('email', { required: true, })} className="input" placeholder="Email" />
 
                     {
@@ -101,7 +101,7 @@ const Login = () => {
                     }
 
                     {/* password field */}
-                    <label className="label text-gray-800">Password</label>
+                    <label className="label text-white">Password</label>
                     <div className='relative lg:pr-4'>
                         <input type={show ? "text" : "password"} {...register('password', { required: true, minLength: 6 })} className="input" placeholder="Password" />
 

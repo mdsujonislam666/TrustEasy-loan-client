@@ -60,54 +60,47 @@ const LoanApplication = () => {
             <h2 className='text-5xl font-bold'>Loan Application</h2>
             <p></p>
             <form onSubmit={handleSubmit(handleLoanApplication)}>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                <div className="card bg-gradient-to-r from-indigo-500 via-purple-300 to-pink-400 text-white w-full max-w-sm shrink-0 shadow-2xl">
                     <div className="card-body">
                         <fieldset className="fieldset">
                             <div>
-                                <label className="label">Email</label>
+                                <label className="label font-bold text-white text-sm">Email</label>
                                 <input type="email" {...register('email', { required: true })}
                                     defaultValue={user?.email} className="input" placeholder="Email" readOnly />
 
-                                <label className="label">Loan Title</label>
+                                <label className="label font-bold text-white text-sm">Loan Title</label>
                                 <input type="text" {...register('loanTitle')} className="input"  placeholder="Loan Title" />
 
-                                <label className="label">Interest Rate</label>
+                                <label className="label font-bold text-white text-sm">Interest Rate</label>
                                 <input type="number" {...register('interestRate')} className="input"  placeholder="Interest Rate" />
                             </div>
                             <div>
-                                <label className="label">First Name</label>
+                                <label className="label font-bold text-white text-sm">First Name</label>
                                 <input type="text" {...register('firstName', { required: true })} className="input" placeholder="First Name" />
 
                                 <label className="label">Last Name</label>
                                 <input type="text" {...register('lastName', { required: true })} className="input" placeholder="Last Name" />
 
-                                <label className="label">Contact Number</label>
+                                <label className="label font-bold text-white text-sm">Contact Number</label>
                                 <input type="number" {...register('contactNumber', { required: true })} className="input" placeholder="Contact number" />
 
-                                <label className="label">National ID / Passport Number</label>
+                                <label className="label font-bold text-white text-sm">National ID / Passport Number</label>
                                 <input type="Number" {...register('nationalID', { required: true })} className="input" placeholder="National Id / Passport Number" />
 
-                                <label className="label">Income Source</label>
+                                <label className="label font-bold text-white text-sm">Income Source</label>
                                 <input type="text" {...register('incomeSource')} className="input" placeholder="Income Source" />
 
-                                <label className="label">Monthly Income</label>
+                                <label className="label font-bold text-white text-sm">Monthly Income</label>
                                 <input type="text" {...register('monthlyIncome', { required: true })} className="input" placeholder="Monthly Income" />
 
                                 <label className="label">Loan Amount</label>
                                 <input type="number" {...register('loanAmount', { required: true })} className="input" placeholder="Loan Amount" />
 
-                                <label className="label">Address</label>
+                                <label className="label font-bold text-white text-sm">Address</label>
                                 <input type="text" {...register('address')} className="input" placeholder="Address" />
 
-                                {/* <label className="label">Status</label>
-                                <input type="text" {...register('status')} className="input" placeholder="Status" defaultValue={"Pending"} readOnly />
-
-                                <label className="label">Application Fee</label>
-                                <input type="text" {...register('applicationFee')} className="input"  defaultValue={"unpaid"} readOnly /> */}
-
-
                                 {/* receiver Instruction */}
-                                <label className="label mt-4">Extra Notes</label>
+                                <label className="label mt-4 font-bold text-white text-sm">Extra Notes</label>
                                 <textarea name="textArea" {...register('extra')} className="input h-24 w-full" id=""></textarea>
                                 <input type="submit" className='btn btn-primary w-full mt-2 text-black' value="LoanApplication" />
                             </div>

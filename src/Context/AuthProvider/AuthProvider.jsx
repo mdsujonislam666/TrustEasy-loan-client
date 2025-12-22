@@ -49,7 +49,7 @@ const AuthProvider = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
             setUser(currentUser);
             if(currentUser){
-                axios.get(`http://localhost:3000/users/${currentUser.email}`).then(res => setDbuser(res.data))
+                axios.get(`https://trusteasy-loan.vercel.app/users/${currentUser.email}`).then(res => setDbuser(res.data))
             }
             // setDbuser(res.data)
             setLoading(false);

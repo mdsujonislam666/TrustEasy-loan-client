@@ -72,7 +72,7 @@ const Register = () => {
             })
             .catch(error => {
                 console.log(error);
-                toast.error('user not created!!');
+                toast.error("User Already Registered!");
             })
     }
 
@@ -88,7 +88,7 @@ const Register = () => {
                     displayName: result.user.displayName,
                     photoURL: result.user.photoURL,
                 }
-                axios.post('http://localhost:3000/users', usersInfo)
+                axios.post('https://trusteasy-loan.vercel.app/users', usersInfo)
                     .then(res => {
                         if(res.data.insertedId){
                             toast.success('user saved to DB');
@@ -114,14 +114,14 @@ const Register = () => {
                 <form onSubmit={handleSubmit(handleRegistration)} className="card-body">
                     <fieldset className="fieldset">
                         {/* name field */}
-                        <label className="label text-gray-800">Name</label>
+                        <label className="label text-white">Name</label>
                         <input type="text" {...register('name', { required: true })} className="input" placeholder="Your Name" />
 
                         {/* photo image field */}
-                        <label className="label text-gray-800">Photo</label>
+                        <label className="label text-white">Photo</label>
                         <input type="file" {...register('photo', { required: true })} className="file-input" placeholder="Your Photo" />
 
-                        <label className="label text-gray-800">Select Role</label>
+                        <label className="label text-white">Select Role</label>
                         <select {...register('role')} className="select" defaultValue="Select Role">
                             <option disabled={true}>Select Role</option>
                             <option>Manager</option>
@@ -129,7 +129,7 @@ const Register = () => {
                         </select>
 
                         {/* email field */}
-                        <label className="label text-gray-800">Email</label>
+                        <label className="label text-white">Email</label>
                         <input type="email" name='email' {...register('email', { required: true })} className="input" placeholder="Email" />
 
                         {
@@ -137,7 +137,7 @@ const Register = () => {
                         }
 
                         {/* password field */}
-                        <label className="label text-gray-800">Password</label>
+                        <label className="label text-white">Password</label>
                         <div className='relative lg:pr-4'>
                             <input type={show ? "text" : "password"} {...register('password', { required: true, minLength: 6 })} className="input" placeholder="Password" />
 

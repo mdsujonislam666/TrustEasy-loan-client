@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import { FaFileInvoiceDollar } from "react-icons/fa";
+import { IoHome } from "react-icons/io5";
 import { FcManager } from "react-icons/fc";
 import { FaAddressCard } from 'react-icons/fa6';
 import { IoIosApps } from "react-icons/io";
 import { MdOutlineManageHistory } from "react-icons/md";
 import { MdPending } from "react-icons/md";
-import { ImUserCheck } from "react-icons/im";
+import { ImPieChart, ImUserCheck } from "react-icons/im";
 import { FaCircleUser } from "react-icons/fa6";
 import useUserRole from '../Hooks/useUserRole';
 import Logo from '../Components/Logo/Logo';
 import DashboardNavLink from '../Components/DashboardNavLink/DashboardNavLink';
 import Footer from '../Pages/Shared/Footer/Footer';
+import logo from '../assets/logo2 (2).png'
 
 
 const DashboardLayout = () => {
@@ -39,15 +41,23 @@ const DashboardLayout = () => {
                 <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
                 <div className="flex min-h-full flex-col bg-cyan-800 items-start is-drawer-close:w-14 is-drawer-open:w-64">
                     {/* Sidebar content here */}
-                    <ul className="menu w-full grow">
+                    <ul className="menu w-full grow space-y-1">
                         {/* List item */}
                         <li>
                             <Link to="/" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
-                                {/* Home icon */}
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-                                <span className="is-drawer-close:hidden">Homepage</span>
+                                <img className='w-14' src={logo} alt="" />
                             </Link>
                         </li>
+                        {/* our dashboard links */}
+                        <li>
+                            <DashboardNavLink
+                                to="/dashboard/dashboardHome"
+                                icon={IoHome }
+                                label="Dashboard Home"
+                                tip="Dashboard Home"
+                            />
+                        </li>
+
 
                         {
                             role === "Borrower" && (

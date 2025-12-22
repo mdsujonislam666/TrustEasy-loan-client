@@ -65,7 +65,7 @@ const Navbar = () => {
                         <li><MyLink to='contact'>Contact</MyLink></li>
                         {
                             user && <>
-                                <li><MyLink to="/dashboard/my-application">Dashboard</MyLink></li>
+                                <li><MyLink to="/dashboard/dashboardHome">Dashboard</MyLink></li>
                             </>
                         }
                     </ul>
